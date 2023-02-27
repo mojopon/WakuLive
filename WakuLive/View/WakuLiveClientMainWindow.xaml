@@ -1,0 +1,24 @@
+﻿<Window x:Class="WakuLive.WakuLiveClientMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WakuLive"
+        xmlns:v="clr-namespace:WakuLive.View"
+        xmlns:vm="clr-namespace:WakuLive.VM"
+        mc:Ignorable="d"
+        Title="WakuLive Client" Height="600" Width="800"
+        d:DataContext="{d:DesignInstance vm:WakuLiveClientMainWindowViewModel}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23" />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="32" />
+        </Grid.RowDefinitions>
+        <v:MenuBar Grid.Row="0" DataContext="{Binding MenuBarViewModel}"/>
+        <v:LiveStreamAddressBar Grid.Row="1" DataContext="{Binding LiveStreamAddressBarViewModel}"/>
+        <v:LiveStreamChannelTab Grid.Row="2" DataContext="{Binding LiveStreamChatTabViewModel}"/>
+        <v:StatusBar Grid.Row="3" />
+    </Grid>
+</Window>

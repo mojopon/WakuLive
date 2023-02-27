@@ -1,0 +1,15 @@
+﻿<Window x:Class="WakuLive.View.ConfigurationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WakuLive.View"
+        xmlns:vm="clr-namespace:WakuLive.VM"
+        mc:Ignorable="d"
+        Title="ConfigurationWindow" Height="450" Width="450"
+        d:DataContext="{d:DesignInstance vm:ConfigurationWindowViewModel}"
+        Closing="Window_Closing">
+    <Grid>
+        <local:ConfigurationTab DataContext="{Binding ConfigurationTabViewModel}" />
+    </Grid>
+</Window>
