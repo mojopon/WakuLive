@@ -11,5 +11,6 @@ namespace WakuLive.Core.Domain
         public string BroadcasterName { get; set; }
         public int ViewerCount { get; set; }
         public string Title { get; set; }
+        public bool IsStreaming { get; set; }
     }
 }

@@ -10,6 +10,5 @@ namespace WakuLive.Core.Domain
     {
         TwitchStreamEntity ConnectStream(string channelName, string accessToken);
         void DisconnectStream(string id);
-        IObservable<TwitchStreamInformationEntity> GetStreamInformation(string channelName, string accessToken);
     }
 }

@@ -15,6 +15,7 @@ namespace WakuLive.Core.Domain
         public string GameName { get; private set; }
         public string Title { get; private set; }
         public string ThumbnailUrl { get; private set; }
+        public bool IsStreaming { get; private set; }
 
         public TwitchStreamInformationEntity(TwitchStreamInformationEntityData data)
         {
@@ -25,6 +26,7 @@ namespace WakuLive.Core.Domain
             GameName = data.GameName;
             Title = data.Title;
             ThumbnailUrl= data.ThumbnailUrl;
+            IsStreaming = data.IsStreaming;
         }
     }
 }

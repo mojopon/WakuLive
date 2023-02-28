@@ -42,12 +42,6 @@ namespace WakuLive.Core.Data
         {
             return TwitchEntityId.Create(channelName);
         }
-
-        public IObservable<TwitchStreamInformationEntity> GetStreamInformation(string channelName, string accessToken)
-        {
-            var dataStore = new TwitchStreamDataStore();
-            return dataStore.GetStreamInformation(channelName, accessToken);
-        }
     }
     
 }
