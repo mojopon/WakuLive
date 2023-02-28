@@ -57,17 +57,28 @@ namespace WakuLive
 
         private void RegisterDomainServices() 
         {
-            // Twitch関連サービスを登録
+#if DEBUG
+            RegisterDebugDomainServices();
+#else
+            RegisterReleaseDomainServices();
+#endif
+        }
 
-            /*
+        private void RegisterReleaseDomainServices()
+        {
             _services.AddSingleton<ITwitchAuthRepository, TwitchAuthRepository>();
             _services.AddSingleton<ITwitchAuthInteractor, TwitchAuthInteractor>();
             _services.AddSingleton<ITwitchChatRepository, TwitchChatRepository>();
             _services.AddSingleton<ITwitchChatInteractor, TwitchChatInteractor>();
             _services.AddSingleton<ITwitchStreamRepository, TwitchStreamRepository>();
             _services.AddSingleton<ITwitchStreamInteractor, TwitchStreamInteractor>();
-            */
 
+            _services.AddSingleton<ITextToSpeechByBouyomiChanService, TextToSpeechByBouyomiChanService>();
+            _services.AddSingleton<ITextToSpeechInteractor, TextToSpeechInteractor>();
+        }
+
+        private void RegisterDebugDomainServices() 
+        {
             _services.AddSingleton<ITwitchAuthRepository, InMemoryTwitchAuthRepository>();
             _services.AddSingleton<ITwitchAuthInteractor, TwitchAuthInteractor>();
             _services.AddSingleton<ITwitchChatRepository, InMemoryTwitchChatRepository>();
@@ -75,7 +86,6 @@ namespace WakuLive
             _services.AddSingleton<ITwitchStreamRepository, InMemoryTwitchStreamRepository>();
             _services.AddSingleton<ITwitchStreamInteractor, TwitchStreamInteractor>();
 
-            // 読み上げサービスを登録
             _services.AddSingleton<ITextToSpeechByBouyomiChanService, TextToSpeechByBouyomiChanService>();
             _services.AddSingleton<ITextToSpeechInteractor, TextToSpeechInteractor>();
         }
