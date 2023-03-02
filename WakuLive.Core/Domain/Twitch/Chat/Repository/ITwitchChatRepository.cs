@@ -9,6 +9,6 @@ namespace WakuLive.Core.Domain
     public interface ITwitchChatRepository
     {
         TwitchChatClientEntity ConnectChat(string userName, string channelName, string accessToken);
-        void DisconnectChat(string channelName);
+        void DisconnectChat(string id);
     }
 }

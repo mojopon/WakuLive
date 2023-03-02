@@ -34,6 +34,7 @@ namespace WakuLive.Core.Domain
             IsFirstMessage = data.IsFirstMessage;
             IsHighlighted = data.IsHighlighted;
             Message = data.Message;
+            RoomId = data.RoomId;
             UserId = data.UserId;
             UserName = data.UserName;
         }
