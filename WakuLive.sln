@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WakuLive.Core", "WakuLive.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WakuLive.Test", "WakuLive.Test\WakuLive.Test.csproj", "{5325F130-B624-4914-AFD7-4A672214D262}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WakuLive.Core.Test", "WakuLive.Core.Test\WakuLive.Core.Test.csproj", "{084A5176-A4AA-4FD1-BFC2-320CF7662E69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{5325F130-B624-4914-AFD7-4A672214D262}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5325F130-B624-4914-AFD7-4A672214D262}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5325F130-B624-4914-AFD7-4A672214D262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{084A5176-A4AA-4FD1-BFC2-320CF7662E69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{084A5176-A4AA-4FD1-BFC2-320CF7662E69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{084A5176-A4AA-4FD1-BFC2-320CF7662E69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{084A5176-A4AA-4FD1-BFC2-320CF7662E69}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
