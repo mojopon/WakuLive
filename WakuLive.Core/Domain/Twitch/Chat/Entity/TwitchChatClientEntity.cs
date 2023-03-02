@@ -6,15 +6,26 @@ using System.Threading.Tasks;
 
 namespace WakuLive.Core.Domain
 {
-    public class TwitchChatClientEntity
+    public class TwitchChatClientEntity : IDisposable
     {
+        private IDisposable _disposable;
+
         public string Id { get; private set; }
         public IObservable<TwitchChatMessageEntity> ChatMessageObservable { get; private set; }
 
-        public TwitchChatClientEntity(string id, IObservable<TwitchChatMessageEntity> observable) 
+        public bool IsDisposed { get; private set; } = false;
+
+        public TwitchChatClientEntity(string id, IObservable<TwitchChatMessageEntity> observable, IDisposable disposable) 
         {
             Id = id;
             ChatMessageObservable = observable;
+            _disposable = disposable;
+        }
+
+        public void Dispose()
+        {
+            _disposable.Dispose();
+            IsDisposed = true;
         }
     }
 }

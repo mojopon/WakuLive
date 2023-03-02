@@ -20,16 +20,22 @@ namespace WakuLive.Core
 {
     public class TwitchChatRepository : ITwitchChatRepository
     {
-        private Dictionary<string, TwitchChatDataStore> _dataStoreDic = new Dictionary<string, TwitchChatDataStore>();
+        private ITwitchChatDataStore _dataStore;
+
+        private Dictionary<string, TwitchChatClientEntity> _entityDic = new Dictionary<string, TwitchChatClientEntity>();
+
+        public TwitchChatRepository(ITwitchChatDataStore dataStore) 
+        {
+            _dataStore = dataStore;
+        }
 
         public TwitchChatClientEntity ConnectChat(string userName, string channelName, string accessToken)
         {
             var id = TwitchEntityId.Create(channelName);
-            if (!_dataStoreDic.ContainsKey(id))
+            if (!_entityDic.ContainsKey(id))
             {
-                var dataStore = new TwitchChatDataStore();
-                _dataStoreDic.Add(id, dataStore);
-                var entity = dataStore.ConnectChat(id, userName, channelName, accessToken);
+                var entity = _dataStore.GetTwitchChatClient(id, userName, channelName, accessToken);
+                _entityDic.Add(id, entity);
                 return entity;
             }
             else 
@@ -40,10 +46,10 @@ namespace WakuLive.Core
 
         public void DisconnectChat(string id)
         {
-            if (_dataStoreDic.ContainsKey(id))
+            if (_entityDic.ContainsKey(id))
             {
-                _dataStoreDic[id].Dispose();
-                _dataStoreDic.Remove(id);
+                _entityDic[id].Dispose();
+                _entityDic.Remove(id);
             }
         }
     }
