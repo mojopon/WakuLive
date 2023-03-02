@@ -34,13 +34,8 @@ namespace WakuLive.Presenter
             _viewModel.ConnectChatCommand = _viewModel.AddressText
                                                       .Select(x => !string.IsNullOrEmpty(x))
                                                       .ToReactiveCommand()
-                                                      .WithSubscribe(() => connectChatCommand.Execute(GetParameters()))
+                                                      .WithSubscribe(() => connectChatCommand.Execute(_viewModel.AddressText.Value))
                                                       .AddTo(disposables);
-        }
-
-        private ConnectChatCommand.ConnectChatCommandParameters GetParameters() 
-        {
-            return new ConnectChatCommand.ConnectChatCommandParameters("username", _viewModel.AddressText.Value, "");
         }
     }
 }

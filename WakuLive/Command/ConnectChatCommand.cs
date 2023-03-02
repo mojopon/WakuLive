@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TwitchLib.Api.ThirdParty.UsernameChange;
 using WakuLive.Controller;
+using WakuLive.Utility;
 
 namespace WakuLive.Command
 {
@@ -27,24 +28,11 @@ namespace WakuLive.Command
 
         public void Execute(object? parameter)
         {
-            var parameters = (ConnectChatCommandParameters)parameter;
-            if (parameters != null) 
+            var url = (string)parameter;
+            if (!string.IsNullOrEmpty(url)) 
             {
-                _wakuLiveClientController.OpenChannel(parameters.UserName, parameters.ChannelName, parameters.AccessToken);
-            }
-        }
-
-        public class ConnectChatCommandParameters 
-        {
-            public string UserName { get; set; }
-            public string ChannelName { get; set; }
-            public string AccessToken { get; set; }
-
-            public ConnectChatCommandParameters(string userName, string channelName, string accessToken) 
-            {
-                UserName = userName;
-                ChannelName = channelName;
-                AccessToken = accessToken;
+                var parseResult = LiveStreamUrlParser.ParseLiveStreamUrl(url);
+                _wakuLiveClientController.OpenChannel(parseResult.LiveStreamServiceType, parseResult.ChannelName);
             }
         }
     }

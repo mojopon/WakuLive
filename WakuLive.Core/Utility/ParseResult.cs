@@ -10,12 +10,12 @@ namespace WakuLive.Core.Utility
     public class ParseResult
     {
         public LiveStreamServiceType LiveStreamServiceType { get; set; }
-        public string Id { get; set; }
+        public string ChannelName { get; set; }
 
-        public ParseResult(LiveStreamServiceType liveStreamServiceType, string id)
+        public ParseResult(LiveStreamServiceType liveStreamServiceType, string channelName)
         {
             LiveStreamServiceType = liveStreamServiceType;
-            Id = id;
+            ChannelName = channelName;
         }
     }
 }

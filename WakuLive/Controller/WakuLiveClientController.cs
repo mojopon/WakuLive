@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using WakuLive.Configuration;
 using WakuLive.Interface;
 using WakuLive.Presenter;
+using WakuLive.Utility;
 
 namespace WakuLive.Controller
 {
@@ -24,9 +25,9 @@ namespace WakuLive.Controller
             _liveStreamChatController = liveStreamChatController;
         }
 
-        public void OpenChannel(string userName, string channelName, string accessToken) 
+        public void OpenChannel(LiveStreamServiceType serviceType, string channelName) 
         {
-            _liveStreamChatController.OpenChannel(userName, channelName, _wakuLiveConfiguration.Account.TwitchAccessToken.Value);
+            _liveStreamChatController.OpenChannel(serviceType, channelName);
         }
 
         public void CloseChannel(string id) 
