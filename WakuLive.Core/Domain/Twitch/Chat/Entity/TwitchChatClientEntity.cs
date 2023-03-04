@@ -24,7 +24,7 @@ namespace WakuLive.Core.Domain
 
         public void Dispose()
         {
-            _disposable.Dispose();
+            _disposable?.Dispose();
             IsDisposed = true;
         }
     }

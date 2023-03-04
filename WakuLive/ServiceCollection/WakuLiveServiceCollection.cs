@@ -9,7 +9,9 @@ using WakuLive.Configuration;
 using WakuLive.Controller;
 using WakuLive.Core;
 using WakuLive.Core.Data;
+using WakuLive.Core.Data.DataStore;
 using WakuLive.Core.Data.Stub;
+using WakuLive.Core.Data.Twitch.Interface;
 using WakuLive.Core.Domain;
 using WakuLive.Core.Domain.TextToSpeech.Interface;
 using WakuLive.Interface;
@@ -67,6 +69,7 @@ namespace WakuLive
         private void RegisterReleaseDomainServices()
         {
             _services.AddSingleton<ITwitchChatDataStore, TwitchChatDataStore>();
+            _services.AddSingleton<ITwitchStreamDataStore, TwitchStreamDataStore>();
 
             _services.AddSingleton<ITwitchAuthRepository, TwitchAuthRepository>();
             _services.AddSingleton<ITwitchAuthInteractor, TwitchAuthInteractor>();
@@ -82,12 +85,13 @@ namespace WakuLive
         private void RegisterDebugDomainServices() 
         {
             _services.AddSingleton<ITwitchChatDataStore, InMemoryTwitchChatDataStore>();
+            _services.AddSingleton<ITwitchStreamDataStore, InMemoryTwitchStreamDataStore>();
 
             _services.AddSingleton<ITwitchAuthRepository, InMemoryTwitchAuthRepository>();
             _services.AddSingleton<ITwitchAuthInteractor, TwitchAuthInteractor>();
             _services.AddSingleton<ITwitchChatRepository, TwitchChatRepository>();
             _services.AddSingleton<ITwitchChatInteractor, TwitchChatInteractor>();
-            _services.AddSingleton<ITwitchStreamRepository, InMemoryTwitchStreamRepository>();
+            _services.AddSingleton<ITwitchStreamRepository, TwitchStreamRepository>();
             _services.AddSingleton<ITwitchStreamInteractor, TwitchStreamInteractor>();
 
             _services.AddSingleton<ITextToSpeechByBouyomiChanService, TextToSpeechByBouyomiChanService>();

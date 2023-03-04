@@ -13,55 +13,24 @@ using TwitchLib.Api;
 using TwitchLib.Api.Helix.Models.Channels.GetChannelInformation;
 using TwitchLib.Api.Helix.Models.Streams.GetStreams;
 using TwitchLib.Api.Helix.Models.Users.GetUsers;
+using WakuLive.Core.Data.Twitch.Interface;
 using WakuLive.Core.Domain;
 using WakuLive.Core.Domain.Twitch.Utility;
 
 namespace WakuLive.Core.Data.DataStore
 {
-    public class TwitchStreamDataStore : IDisposable
+    public class TwitchStreamDataStore : ITwitchStreamDataStore
     {
-        private readonly int _getInterval = 15; 
         private TwitchAPI _api = new TwitchAPI();
-        private CompositeDisposable _disposables = new CompositeDisposable();
+
         public TwitchStreamDataStore()
         {
             _api.Settings.ClientId = "4wimbgsvg8axlcriswl3g7cv8120vc";
         }
 
-        public TwitchStreamEntity ConnectStream(string id, string channelName, string accessToken) 
+        public IObservable<TwitchStreamInformationEntity> GetStreamInformation(string channelName, string accessToken, Action<Exception> onError)
         {
-            var subject = new Subject<TwitchStreamInformationEntity>();
-            var intervalDiposable = Observable.Interval(TimeSpan.FromSeconds(_getInterval))
-                                              .StartWith(0)
-                                              .Select(x => GetChannelInformationAsync(channelName, accessToken, ex =>
-                                              {
-                                                  if (!subject.IsDisposed)
-                                                  {
-                                                      subject.OnError(ex);
-                                                  }
-                                              }).ToObservable())
-                                              .Merge()
-                                              .Subscribe(x =>
-                                              {
-                                                  subject.OnNext(x);
-                                              });
-
-            var completeOnDispose = Disposable.Create(() =>
-                                              {
-                                                  subject.OnCompleted();
-                                              });
-
-            _disposables.Add(intervalDiposable);
-            _disposables.Add(completeOnDispose);
-            _disposables.Add(subject);
-
-            var entity = new TwitchStreamEntity(id, subject);
-            return entity;
-        }
-
-        private string CreateId(string channelName) 
-        {
-            return TwitchEntityId.Create(channelName);
+            return GetChannelInformationAsync(channelName, accessToken, onError).ToObservable();
         }
 
         /// <summary>
@@ -141,12 +110,6 @@ namespace WakuLive.Core.Data.DataStore
                 IsStreaming = false,
             };
             return new TwitchStreamInformationEntity(data);
-        }
-
-        public void Dispose()
-        {
-            Debug.Print("TwitchStreamDataStore: Disposed.");
-            _disposables?.Dispose();
         }
     }
 }
