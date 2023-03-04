@@ -66,6 +66,8 @@ namespace WakuLive
 
         private void RegisterReleaseDomainServices()
         {
+            _services.AddSingleton<ITwitchChatDataStore, TwitchChatDataStore>();
+
             _services.AddSingleton<ITwitchAuthRepository, TwitchAuthRepository>();
             _services.AddSingleton<ITwitchAuthInteractor, TwitchAuthInteractor>();
             _services.AddSingleton<ITwitchChatRepository, TwitchChatRepository>();
@@ -79,9 +81,11 @@ namespace WakuLive
 
         private void RegisterDebugDomainServices() 
         {
+            _services.AddSingleton<ITwitchChatDataStore, InMemoryTwitchChatDataStore>();
+
             _services.AddSingleton<ITwitchAuthRepository, InMemoryTwitchAuthRepository>();
             _services.AddSingleton<ITwitchAuthInteractor, TwitchAuthInteractor>();
-            _services.AddSingleton<ITwitchChatRepository, InMemoryTwitchChatRepository>();
+            _services.AddSingleton<ITwitchChatRepository, TwitchChatRepository>();
             _services.AddSingleton<ITwitchChatInteractor, TwitchChatInteractor>();
             _services.AddSingleton<ITwitchStreamRepository, InMemoryTwitchStreamRepository>();
             _services.AddSingleton<ITwitchStreamInteractor, TwitchStreamInteractor>();
