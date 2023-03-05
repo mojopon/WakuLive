@@ -29,7 +29,7 @@ namespace WakuLive.Core.Data.DataStore
             _api.Settings.ClientId = "4wimbgsvg8axlcriswl3g7cv8120vc";
         }
 
-        public TwitchStreamEntity GetStream(string id, string channelName, string accessToken)
+        public TwitchStreamEntity GetTwitchStream(string id, string channelName, string accessToken)
         {
             var disposables = new CompositeDisposable();
             var subject = new Subject<TwitchStreamInformationEntity>();

@@ -32,7 +32,7 @@ namespace WakuLive.Core.Data
             var id = TwitchEntityId.Create(channelName);
             if (!_entityDic.ContainsKey(id))
             {
-                var entity = _dataStore.GetStream(id, channelName, accessToken);
+                var entity = _dataStore.GetTwitchStream(id, channelName, accessToken);
                 _entityDic.Add(id, entity);
                 return entity;
             }

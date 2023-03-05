@@ -14,7 +14,7 @@ namespace WakuLive.Core.Data
 {
     public class InMemoryTwitchStreamDataStore : ITwitchStreamDataStore
     {
-        public TwitchStreamEntity GetStream(string id, string channelName, string accessToken)
+        public TwitchStreamEntity GetTwitchStream(string id, string channelName, string accessToken)
         {
             var disposables = new CompositeDisposable();
             var subject = new Subject<TwitchStreamInformationEntity>();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using WakuLive.Core.Data;
 using WakuLive.Core.Domain;
 
-namespace WakuLive.Core.Test
+namespace WakuLive.Core.Test.Data
 {
     public class TwitchChatDataStoreForTest : ITwitchChatDataStore
     {
