@@ -29,38 +29,11 @@ namespace WakuLive.Core.Data
 
         public TwitchStreamEntity ConnectStream(string channelName, string accessToken)
         {
-            var id = CreateId(channelName);
+            var id = TwitchEntityId.Create(channelName);
             if (!_entityDic.ContainsKey(id))
             {
-                var disposables = new CompositeDisposable();
-                var subject = new Subject<TwitchStreamInformationEntity>();
-                var intervalDiposable = Observable.Interval(TimeSpan.FromSeconds(_getInterval))
-                                                  .StartWith(0)
-                                                  .Select(x => _dataStore.GetStreamInformation(channelName, accessToken, ex =>
-                                                  {
-                                                      if (!subject.IsDisposed)
-                                                      {
-                                                          subject.OnError(ex);
-                                                      }
-                                                  }))
-                                                  .Merge()
-                                                  .Subscribe(x =>
-                                                  {
-                                                      subject.OnNext(x);
-                                                  });
-
-                var completeOnDispose = Disposable.Create(() =>
-                {
-                    subject.OnCompleted();
-                });
-
-                disposables.Add(intervalDiposable);
-                disposables.Add(completeOnDispose);
-                disposables.Add(subject);
-
-                var entity = new TwitchStreamEntity(id, subject, disposables);
+                var entity = _dataStore.GetStream(id, channelName, accessToken);
                 _entityDic.Add(id, entity);
-
                 return entity;
             }
             else
@@ -76,11 +49,6 @@ namespace WakuLive.Core.Data
                 _entityDic[id].Dispose();
                 _entityDic.Remove(id);
             }
-        }
-
-        private string CreateId(string channelName) 
-        {
-            return TwitchEntityId.Create(channelName);
         }
     }
     

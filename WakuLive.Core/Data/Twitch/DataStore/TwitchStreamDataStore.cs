@@ -21,11 +21,44 @@ namespace WakuLive.Core.Data.DataStore
 {
     public class TwitchStreamDataStore : ITwitchStreamDataStore
     {
+        private readonly int _getInterval = 10;
         private TwitchAPI _api = new TwitchAPI();
 
         public TwitchStreamDataStore()
         {
             _api.Settings.ClientId = "4wimbgsvg8axlcriswl3g7cv8120vc";
+        }
+
+        public TwitchStreamEntity GetStream(string id, string channelName, string accessToken)
+        {
+            var disposables = new CompositeDisposable();
+            var subject = new Subject<TwitchStreamInformationEntity>();
+            var intervalDiposable = Observable.Interval(TimeSpan.FromSeconds(_getInterval))
+                                              .StartWith(0)
+                                              .Select(x => GetStreamInformation(channelName, accessToken, ex =>
+                                              {
+                                                  if (!subject.IsDisposed)
+                                                  {
+                                                      subject.OnError(ex);
+                                                  }
+                                              }))
+                                              .Merge()
+                                              .Subscribe(x =>
+                                              {
+                                                  subject.OnNext(x);
+                                              });
+
+            var completeOnDispose = Disposable.Create(() =>
+            {
+                subject.OnCompleted();
+            });
+
+            disposables.Add(intervalDiposable);
+            disposables.Add(completeOnDispose);
+            disposables.Add(subject);
+
+            var entity = new TwitchStreamEntity(id, subject, disposables);
+            return entity;
         }
 
         public IObservable<TwitchStreamInformationEntity> GetStreamInformation(string channelName, string accessToken, Action<Exception> onError)
