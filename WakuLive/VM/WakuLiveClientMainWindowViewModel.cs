@@ -12,14 +12,17 @@ namespace WakuLive.VM
 {
     public class WakuLiveClientMainWindowViewModel
     {
+        public StatusBarViewModel StatusBarViewModel { get; set; }
         public MenuBarViewModel MenuBarViewModel { get; set; }
         public LiveStreamAddressBarViewModel LiveStreamAddressBarViewModel { get; set; }
         public LiveStreamChannelTabViewModel LiveStreamChatTabViewModel { get; set; }
 
-        public WakuLiveClientMainWindowViewModel(MenuBarViewModel menuBarViewModel,
+        public WakuLiveClientMainWindowViewModel(StatusBarViewModel statusBarViewModel,
+                                                 MenuBarViewModel menuBarViewModel,
                                                  LiveStreamAddressBarViewModel liveStreamAddressBarViewModel,
                                                  LiveStreamChannelTabViewModel liveStreamChatTabViewModel) 
         {
+            StatusBarViewModel = statusBarViewModel;
             MenuBarViewModel = menuBarViewModel;
             LiveStreamAddressBarViewModel = liveStreamAddressBarViewModel;
             LiveStreamChatTabViewModel = liveStreamChatTabViewModel;

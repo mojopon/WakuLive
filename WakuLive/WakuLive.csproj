@@ -11,10 +11,10 @@
   <ItemGroup>
     <None Remove="Resources\user.png" />
     <None Remove="View\AccountConfigurationTabItem.xaml" />
-    <None Remove="View\Chat\LiveStreamAddressBar.xaml" />
-    <None Remove="View\Chat\LiveStreamChannelInformation.xaml" />
-    <None Remove="View\Chat\MenuBar.xaml" />
-    <None Remove="View\Chat\StatusBar.xaml" />
+    <None Remove="View\Channel\LiveStreamAddressBar.xaml" />
+    <None Remove="View\Channel\LiveStreamChannelInformation.xaml" />
+    <None Remove="View\Channel\MenuBar.xaml" />
+    <None Remove="View\Channel\StatusBar.xaml" />
     <None Remove="View\ConfigurationTab.xaml" />
     <None Remove="View\ConfigurationWindow.xaml" />
     <None Remove="View\LiveStreamChatLog.xaml" />

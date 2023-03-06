@@ -16,17 +16,20 @@ namespace WakuLive.Controller
         private ITwitchChatInteractor    _twitchChatInteractor;
         private ITwitchChannelInteractor  _twitchStreamInteractor;
         private ILiveStreamPresenter _liveStreamPresenter;
+        private StatusBarController _statusBarController;
         private TextToSpeechController _textToSpeechController;
         public LiveStreamController(IWakuLiveConfiguration wakuLiveConfiguration,
                                     ITwitchChatInteractor    twitchChatInteractor,
                                     ITwitchChannelInteractor  twitchStreamInteractor,
                                     ILiveStreamPresenter liveStreamPresenter,
+                                    StatusBarController statusBarController,
                                     TextToSpeechController textToSpeechController) 
         {
             _wakuLiveConfiguration = wakuLiveConfiguration;
             _twitchChatInteractor    = twitchChatInteractor;
             _twitchStreamInteractor  = twitchStreamInteractor;
             _liveStreamPresenter = liveStreamPresenter;
+            _statusBarController = statusBarController;
             _textToSpeechController = textToSpeechController;
         }
 
@@ -64,6 +67,7 @@ namespace WakuLive.Controller
             var id = chatModel.Id;
 
             _liveStreamPresenter.AddModels(id, chatModel, channelModel);
+            _statusBarController.AddChannelModel(id, channelModel);
             _textToSpeechController.StartSpeech(id, chatModel);
         }
 
@@ -76,6 +80,7 @@ namespace WakuLive.Controller
             _twitchStreamInteractor.DisconnectTwitchChannel(disconnectTwitchChannelInput);
 
             _liveStreamPresenter.DeleteModels(id);
+            _statusBarController.DeleteChannelModel(id);
             _textToSpeechController.StopSpeech(id);
         }
     }

@@ -19,6 +19,6 @@
         <v:MenuBar Grid.Row="0" DataContext="{Binding MenuBarViewModel}"/>
         <v:LiveStreamAddressBar Grid.Row="1" DataContext="{Binding LiveStreamAddressBarViewModel}"/>
         <v:LiveStreamChannelTab Grid.Row="2" DataContext="{Binding LiveStreamChatTabViewModel}"/>
-        <v:StatusBar Grid.Row="3" />
+        <v:StatusBar Grid.Row="3" DataContext="{Binding StatusBarViewModel}"/>
     </Grid>
 </Window>

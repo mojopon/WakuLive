@@ -101,6 +101,7 @@ namespace WakuLive
         private void RegisterViewModels() 
         {
             // MainWindow ViewModel Groups
+            _services.AddSingleton<StatusBarViewModel>();
             _services.AddSingleton<MenuBarViewModel>();
             _services.AddSingleton<LiveStreamAddressBarViewModel>();
             _services.AddSingleton<LiveStreamChannelTabViewModel>();
@@ -114,6 +115,8 @@ namespace WakuLive
 
         private void RegisterPresenters() 
         {
+            _services.AddSingleton<StatusBarPresenter>();
+
             _services.AddSingleton<MenuBarPresenter>();
             _services.AddSingleton<ICommandBindable>(x => x.GetRequiredService<MenuBarPresenter>());
 
@@ -134,6 +137,7 @@ namespace WakuLive
         {
             _services.AddSingleton<AccountConfigurationController>();
             _services.AddSingleton<TextToSpeechController>();
+            _services.AddSingleton<StatusBarController>();
             _services.AddSingleton<LiveStreamController>();
             _services.AddSingleton<WakuLiveClientController>();
         }
