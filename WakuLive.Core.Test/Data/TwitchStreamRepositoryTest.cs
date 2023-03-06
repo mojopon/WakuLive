@@ -18,7 +18,7 @@ namespace WakuLive.Core.Test.Data
         [SetUp]
         public void Setup()
         {
-            _twitchStreamDataStore= new TwitchStreamDataStoreForTest();
+            _twitchStreamDataStore = new TwitchStreamDataStoreForTest();
             _twitchStreamRepository = new TwitchStreamRepository(_twitchStreamDataStore);
         }
 
@@ -53,6 +53,37 @@ namespace WakuLive.Core.Test.Data
             Assert.That(informationEntity.ThumbnailUrl, Is.EqualTo(data.ThumbnailUrl));
             Assert.That(informationEntity.Title, Is.EqualTo(data.Title));
             Assert.That(informationEntity.ViewerCount, Is.EqualTo(data.ViewerCount));
+        }
+
+        /// <summary>
+        /// 同じチャンネルに2回以上接続を試みた場合、2度目以降はNullとなる事を確認するテスト
+        /// </summary>
+        [Test]
+        public void ConnectStreamTwiceTest()
+        {
+            var channelName = "testchannel";
+            var entity = _twitchStreamRepository.ConnectStream(channelName, "");
+            Assert.IsNotNull(entity);
+
+            entity = _twitchStreamRepository.ConnectStream(channelName, "");
+            Assert.IsNull(entity);
+        }
+
+        [Test]
+        public void DisconnectStreamTest()
+        {
+            var channelName = "testchannel";
+            var entity = _twitchStreamRepository.ConnectStream(channelName, "");
+            Assert.IsNotNull(entity);
+            Assert.IsFalse(entity.IsDisposed);
+
+            _twitchStreamRepository.DisconnectStream(entity.Id);
+            Assert.IsTrue(entity.IsDisposed);
+
+            // 切断後はもう一度接続可能
+            entity = _twitchStreamRepository.ConnectStream(channelName, "");
+            Assert.IsNotNull(entity);
+            Assert.IsFalse(entity.IsDisposed);
         }
     }
 }
