@@ -7,8 +7,8 @@ using WakuLive.Core.Domain;
 
 namespace WakuLive.Core.Data.Twitch.Interface
 {
-    public interface ITwitchStreamDataStore
+    public interface ITwitchChannelDataStore
     {
-        TwitchStreamEntity GetTwitchStream(string id, string channelName, string accessToken);
+        TwitchChannelEntity GetTwitchChannel(string id, string channelName, string accessToken);
     }
 }

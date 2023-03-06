@@ -10,29 +10,29 @@ using WakuLive.Core.Domain;
 
 namespace WakuLive.Core.Test.Data
 {
-    public class TwitchStreamRepositoryTest
+    public class TwitchChannelRepositoryTest
     {
-        private ITwitchStreamRepository _twitchStreamRepository;
-        private TwitchStreamDataStoreForTest _twitchStreamDataStore;
+        private ITwitchChannelRepository _twitchChannelRepository;
+        private TwitchChannelDataStoreForTest _twitchChannelDataStore;
 
         [SetUp]
         public void Setup()
         {
-            _twitchStreamDataStore = new TwitchStreamDataStoreForTest();
-            _twitchStreamRepository = new TwitchStreamRepository(_twitchStreamDataStore);
+            _twitchChannelDataStore = new TwitchChannelDataStoreForTest();
+            _twitchChannelRepository = new TwitchChannelRepository(_twitchChannelDataStore);
         }
 
         [Test]
-        public void ConnectStreamTest()
+        public void ConnectChannelTest()
         {
             var channelName = "testchannel";
-            var entity = _twitchStreamRepository.ConnectStream(channelName, "");
+            var entity = _twitchChannelRepository.ConnectChannel(channelName, "");
             Assert.IsNotNull(entity);
 
-            TwitchStreamInformationEntity informationEntity = null;
-            entity.StreamInformationObservable.Subscribe(x => informationEntity = x);
+            TwitchChannelInformationEntity informationEntity = null;
+            entity.ChannelInformationObservable.Subscribe(x => informationEntity = x);
 
-            TwitchStreamInformationEntityData data = new TwitchStreamInformationEntityData()
+            TwitchChannelInformationEntityData data = new TwitchChannelInformationEntityData()
             {
                 BroadcasterId = "123",
                 BroadcasterName = channelName,
@@ -43,7 +43,7 @@ namespace WakuLive.Core.Test.Data
                 Title = "testchannel title",
                 ViewerCount = 100,
             };
-            _twitchStreamDataStore.SendStreamInformation(entity.Id, data);
+            _twitchChannelDataStore.SendChannelInformation(entity.Id, data);
             Assert.IsNotNull(informationEntity);
             Assert.That(informationEntity.BroadcasterId, Is.EqualTo(data.BroadcasterId));
             Assert.That(informationEntity.BroadcasterName, Is.EqualTo(data.BroadcasterName));
@@ -59,29 +59,29 @@ namespace WakuLive.Core.Test.Data
         /// 同じチャンネルに2回以上接続を試みた場合、2度目以降はNullとなる事を確認するテスト
         /// </summary>
         [Test]
-        public void ConnectStreamTwiceTest()
+        public void ConnectChannelTwiceTest()
         {
             var channelName = "testchannel";
-            var entity = _twitchStreamRepository.ConnectStream(channelName, "");
+            var entity = _twitchChannelRepository.ConnectChannel(channelName, "");
             Assert.IsNotNull(entity);
 
-            entity = _twitchStreamRepository.ConnectStream(channelName, "");
+            entity = _twitchChannelRepository.ConnectChannel(channelName, "");
             Assert.IsNull(entity);
         }
 
         [Test]
-        public void DisconnectStreamTest()
+        public void DisconnectChannelTest()
         {
             var channelName = "testchannel";
-            var entity = _twitchStreamRepository.ConnectStream(channelName, "");
+            var entity = _twitchChannelRepository.ConnectChannel(channelName, "");
             Assert.IsNotNull(entity);
             Assert.IsFalse(entity.IsDisposed);
 
-            _twitchStreamRepository.DisconnectStream(entity.Id);
+            _twitchChannelRepository.DisconnectChannel(entity.Id);
             Assert.IsTrue(entity.IsDisposed);
 
             // 切断後はもう一度接続可能
-            entity = _twitchStreamRepository.ConnectStream(channelName, "");
+            entity = _twitchChannelRepository.ConnectChannel(channelName, "");
             Assert.IsNotNull(entity);
             Assert.IsFalse(entity.IsDisposed);
         }

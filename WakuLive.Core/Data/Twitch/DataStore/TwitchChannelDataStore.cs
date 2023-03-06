@@ -19,23 +19,23 @@ using WakuLive.Core.Domain.Twitch.Utility;
 
 namespace WakuLive.Core.Data.DataStore
 {
-    public class TwitchStreamDataStore : ITwitchStreamDataStore
+    public class TwitchChannelDataStore : ITwitchChannelDataStore
     {
         private readonly int _getInterval = 10;
         private TwitchAPI _api = new TwitchAPI();
 
-        public TwitchStreamDataStore()
+        public TwitchChannelDataStore()
         {
             _api.Settings.ClientId = "4wimbgsvg8axlcriswl3g7cv8120vc";
         }
 
-        public TwitchStreamEntity GetTwitchStream(string id, string channelName, string accessToken)
+        public TwitchChannelEntity GetTwitchChannel(string id, string channelName, string accessToken)
         {
             var disposables = new CompositeDisposable();
-            var subject = new Subject<TwitchStreamInformationEntity>();
+            var subject = new Subject<TwitchChannelInformationEntity>();
             var intervalDiposable = Observable.Interval(TimeSpan.FromSeconds(_getInterval))
                                               .StartWith(0)
-                                              .Select(x => GetStreamInformation(channelName, accessToken, ex =>
+                                              .Select(x => GetChannelInformation(channelName, accessToken, ex =>
                                               {
                                                   if (!subject.IsDisposed)
                                                   {
@@ -57,11 +57,11 @@ namespace WakuLive.Core.Data.DataStore
             disposables.Add(completeOnDispose);
             disposables.Add(subject);
 
-            var entity = new TwitchStreamEntity(id, subject, disposables);
+            var entity = new TwitchChannelEntity(id, subject, disposables);
             return entity;
         }
 
-        public IObservable<TwitchStreamInformationEntity> GetStreamInformation(string channelName, string accessToken, Action<Exception> onError)
+        public IObservable<TwitchChannelInformationEntity> GetChannelInformation(string channelName, string accessToken, Action<Exception> onError)
         {
             return GetChannelInformationAsync(channelName, accessToken, onError).ToObservable();
         }
@@ -74,13 +74,13 @@ namespace WakuLive.Core.Data.DataStore
         /// <param name="accessToken"></param>
         /// <param name="onError"></param>
         /// <returns></returns>
-        private async Task<TwitchStreamInformationEntity> GetChannelInformationAsync(string channelName, string accessToken, Action<Exception> onError)
+        private async Task<TwitchChannelInformationEntity> GetChannelInformationAsync(string channelName, string accessToken, Action<Exception> onError)
         {
             var getStreamsResponse = await _api.Helix.Streams.GetStreamsAsync(null, 20, null, null, null, new List<string> { channelName }, accessToken);
 
             if (getStreamsResponse.Streams.Length > 0)
             {
-                return CreateTwitchStreamInformationEntity(getStreamsResponse);
+                return CreateTwitchChannelInformationEntity(getStreamsResponse);
             }
             else
             {
@@ -92,7 +92,7 @@ namespace WakuLive.Core.Data.DataStore
 
                     if (getChannelInformationsResponse.Data.Length > 0)
                     {
-                        return CreateTwitchStreamInformationEntity(getUsersResponse, getChannelInformationsResponse);
+                        return CreateTwitchChannelInformationEntity(getUsersResponse, getChannelInformationsResponse);
                     }
                     else
                     {
@@ -109,10 +109,10 @@ namespace WakuLive.Core.Data.DataStore
         }
 
         // GetStreamsResponseでStream状態が取得できた際のメソッド（TwitchチャンネルがOnline・配信中）
-        private TwitchStreamInformationEntity CreateTwitchStreamInformationEntity(GetStreamsResponse getStreamsResponse) 
+        private TwitchChannelInformationEntity CreateTwitchChannelInformationEntity(GetStreamsResponse getStreamsResponse) 
         {
             var stream = getStreamsResponse.Streams[0];
-            var data = new TwitchStreamInformationEntityData()
+            var data = new TwitchChannelInformationEntityData()
             {
                 ViewerCount = stream.ViewerCount,
                 BroadcasterName = stream.UserName,
@@ -123,15 +123,15 @@ namespace WakuLive.Core.Data.DataStore
                 ThumbnailUrl = stream.ThumbnailUrl,
                 IsStreaming = true,
             };
-            return new TwitchStreamInformationEntity(data);
+            return new TwitchChannelInformationEntity(data);
         }
 
         // GetStreamsResponseでStream状態が取れなかった際のメソッド（TwitchチャンネルがOffline）
-        private TwitchStreamInformationEntity CreateTwitchStreamInformationEntity(GetUsersResponse getUsersResponse,GetChannelInformationResponse getChannelInformationResponse) 
+        private TwitchChannelInformationEntity CreateTwitchChannelInformationEntity(GetUsersResponse getUsersResponse,GetChannelInformationResponse getChannelInformationResponse) 
         {
             var user = getUsersResponse.Users[0];
             var channelInformation = getChannelInformationResponse.Data[0];
-            var data = new TwitchStreamInformationEntityData()
+            var data = new TwitchChannelInformationEntityData()
             {
                 ViewerCount = (int)user.ViewCount,
                 BroadcasterName = channelInformation.BroadcasterName,
@@ -142,7 +142,7 @@ namespace WakuLive.Core.Data.DataStore
                 ThumbnailUrl = user.OfflineImageUrl,
                 IsStreaming = false,
             };
-            return new TwitchStreamInformationEntity(data);
+            return new TwitchChannelInformationEntity(data);
         }
     }
 }

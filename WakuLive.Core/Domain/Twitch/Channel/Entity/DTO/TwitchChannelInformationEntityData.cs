@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WakuLive.Core.Domain
 {
-    public class TwitchStreamInformationEntityData
+    public class TwitchChannelInformationEntityData
     {
         public int ViewerCount { get; set; }
         public string BroadcasterName { get; set; }

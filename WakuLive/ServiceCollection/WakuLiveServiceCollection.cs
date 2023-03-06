@@ -69,14 +69,14 @@ namespace WakuLive
         private void RegisterReleaseDomainServices()
         {
             _services.AddSingleton<ITwitchChatDataStore, TwitchChatDataStore>();
-            _services.AddSingleton<ITwitchStreamDataStore, TwitchStreamDataStore>();
+            _services.AddSingleton<ITwitchChannelDataStore, TwitchChannelDataStore>();
 
             _services.AddSingleton<ITwitchAuthRepository, TwitchAuthRepository>();
             _services.AddSingleton<ITwitchAuthInteractor, TwitchAuthInteractor>();
             _services.AddSingleton<ITwitchChatRepository, TwitchChatRepository>();
             _services.AddSingleton<ITwitchChatInteractor, TwitchChatInteractor>();
-            _services.AddSingleton<ITwitchStreamRepository, TwitchStreamRepository>();
-            _services.AddSingleton<ITwitchStreamInteractor, TwitchStreamInteractor>();
+            _services.AddSingleton<ITwitchChannelRepository, TwitchChannelRepository>();
+            _services.AddSingleton<ITwitchChannelInteractor, TwitchChannelInteractor>();
 
             _services.AddSingleton<ITextToSpeechByBouyomiChanService, TextToSpeechByBouyomiChanService>();
             _services.AddSingleton<ITextToSpeechInteractor, TextToSpeechInteractor>();
@@ -85,14 +85,14 @@ namespace WakuLive
         private void RegisterDebugDomainServices() 
         {
             _services.AddSingleton<ITwitchChatDataStore, InMemoryTwitchChatDataStore>();
-            _services.AddSingleton<ITwitchStreamDataStore, InMemoryTwitchStreamDataStore>();
+            _services.AddSingleton<ITwitchChannelDataStore, InMemoryTwitchChannelDataStore>();
 
             _services.AddSingleton<ITwitchAuthRepository, InMemoryTwitchAuthRepository>();
             _services.AddSingleton<ITwitchAuthInteractor, TwitchAuthInteractor>();
             _services.AddSingleton<ITwitchChatRepository, TwitchChatRepository>();
             _services.AddSingleton<ITwitchChatInteractor, TwitchChatInteractor>();
-            _services.AddSingleton<ITwitchStreamRepository, TwitchStreamRepository>();
-            _services.AddSingleton<ITwitchStreamInteractor, TwitchStreamInteractor>();
+            _services.AddSingleton<ITwitchChannelRepository, TwitchChannelRepository>();
+            _services.AddSingleton<ITwitchChannelInteractor, TwitchChannelInteractor>();
 
             _services.AddSingleton<ITextToSpeechByBouyomiChanService, TextToSpeechByBouyomiChanService>();
             _services.AddSingleton<ITextToSpeechInteractor, TextToSpeechInteractor>();

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WakuLive.Core.Domain
 {
-    public class ConnectTwitchStreamOutput
+    public class ConnectTwitchChannelOutput
     {
         public ChannelModel ChannelModel { get; private set; }
 
-        public ConnectTwitchStreamOutput(ChannelModel channelModel) 
+        public ConnectTwitchChannelOutput(ChannelModel channelModel) 
         {
             ChannelModel = channelModel;
         }

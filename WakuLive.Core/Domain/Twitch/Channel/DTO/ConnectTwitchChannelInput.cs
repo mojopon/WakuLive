@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace WakuLive.Core.Domain
 {
-    public class ConnectTwitchStreamInput
+    public class ConnectTwitchChannelInput
     {
         public string ChannelName { get; private set; }
         public string AccessToken { get; private set; }
 
-        public ConnectTwitchStreamInput(string channelName, string accessToken) 
+        public ConnectTwitchChannelInput(string channelName, string accessToken) 
         {
             ChannelName = channelName;
             AccessToken = accessToken;

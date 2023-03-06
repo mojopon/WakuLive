@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WakuLive.Core.Domain
 {
-    public class DisconnectTwitchStreamInput
+    public class DisconnectTwitchChannelInput
     {
         public string Id { get; private set; }
 
-        public DisconnectTwitchStreamInput(string id) 
+        public DisconnectTwitchChannelInput(string id) 
         {
             Id = id;
         }

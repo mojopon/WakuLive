@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace WakuLive.Core.Domain
 {
-    public class TwitchStreamEntity : IDisposable
+    public class TwitchChannelEntity : IDisposable
     {
         private IDisposable _disposable;
 
         public string Id { get; private set; }
-        public IObservable<TwitchStreamInformationEntity> StreamInformationObservable { get; private set; }
+        public IObservable<TwitchChannelInformationEntity> ChannelInformationObservable { get; private set; }
 
         public bool IsDisposed { get; private set; } = false;
 
-        public TwitchStreamEntity(string id, IObservable<TwitchStreamInformationEntity> streamInformationObservable, IDisposable disposable) 
+        public TwitchChannelEntity(string id, IObservable<TwitchChannelInformationEntity> channelInformationObservable, IDisposable disposable) 
         {
             Id = id;
-            StreamInformationObservable = streamInformationObservable;
+            ChannelInformationObservable = channelInformationObservable;
             _disposable = disposable;
         }
 

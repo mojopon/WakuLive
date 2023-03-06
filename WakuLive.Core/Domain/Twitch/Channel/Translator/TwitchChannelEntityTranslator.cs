@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace WakuLive.Core.Domain
 {
-    public class TwitchStreamEntityTranslator
+    public class TwitchChannelEntityTranslator
     {
-        public ChannelModel Translate(TwitchStreamEntity entity) 
+        public ChannelModel Translate(TwitchChannelEntity entity) 
         {
             if (entity != null)
             {
                 Subject<ChannelInformationModel> subject = new Subject<ChannelInformationModel>();
-                entity.StreamInformationObservable
+                entity.ChannelInformationObservable
                       .Subscribe(x =>
                                 {
                                     var data = new ChannelInformationModelData()

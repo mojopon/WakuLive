@@ -14,12 +14,12 @@ namespace WakuLive.Controller
     {
         private IWakuLiveConfiguration _wakuLiveConfiguration;
         private ITwitchChatInteractor    _twitchChatInteractor;
-        private ITwitchStreamInteractor  _twitchStreamInteractor;
+        private ITwitchChannelInteractor  _twitchStreamInteractor;
         private ILiveStreamPresenter _liveStreamPresenter;
         private TextToSpeechController _textToSpeechController;
         public LiveStreamController(IWakuLiveConfiguration wakuLiveConfiguration,
                                     ITwitchChatInteractor    twitchChatInteractor,
-                                    ITwitchStreamInteractor  twitchStreamInteractor,
+                                    ITwitchChannelInteractor  twitchStreamInteractor,
                                     ILiveStreamPresenter liveStreamPresenter,
                                     TextToSpeechController textToSpeechController) 
         {
@@ -52,8 +52,8 @@ namespace WakuLive.Controller
             var connectTwitchChatOutput = _twitchChatInteractor.ConnectTwitchChat(connectTwitchChatInput);
             var chatModel = connectTwitchChatOutput.ChatModel;
 
-            var connectTwitchStreamInput = new ConnectTwitchStreamInput(channelName, accessToken);
-            var connectTwitchStreamOutput = _twitchStreamInteractor.ConnectTwitchStream(connectTwitchStreamInput);
+            var connectTwitchStreamInput = new ConnectTwitchChannelInput(channelName, accessToken);
+            var connectTwitchStreamOutput = _twitchStreamInteractor.ConnectTwitchChannel(connectTwitchStreamInput);
             var channelModel = connectTwitchStreamOutput.ChannelModel;
 
             if (chatModel == null || channelModel == null)
@@ -72,8 +72,8 @@ namespace WakuLive.Controller
             var disconnectTwitchChatInput = new DisconnectTwitchChatInput(id);
             _twitchChatInteractor.DisconnectTwitchChat(disconnectTwitchChatInput);
 
-            var disconnectTwitchChannelInput = new DisconnectTwitchStreamInput(id);
-            _twitchStreamInteractor.DisconnectTwitchStream(disconnectTwitchChannelInput);
+            var disconnectTwitchChannelInput = new DisconnectTwitchChannelInput(id);
+            _twitchStreamInteractor.DisconnectTwitchChannel(disconnectTwitchChannelInput);
 
             _liveStreamPresenter.DeleteModels(id);
             _textToSpeechController.StopSpeech(id);

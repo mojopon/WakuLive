@@ -14,25 +14,25 @@ using WakuLive.Core.Domain.Twitch.Utility;
 
 namespace WakuLive.Core.Data
 {
-    public class TwitchStreamRepository : ITwitchStreamRepository
+    public class TwitchChannelRepository : ITwitchChannelRepository
     {
         // チャンネル情報更新のインターバル
         private readonly int _getInterval = 10;
 
-        private ITwitchStreamDataStore _dataStore;
-        private Dictionary<string, TwitchStreamEntity> _entityDic = new Dictionary<string, TwitchStreamEntity>();
+        private ITwitchChannelDataStore _dataStore;
+        private Dictionary<string, TwitchChannelEntity> _entityDic = new Dictionary<string, TwitchChannelEntity>();
 
-        public TwitchStreamRepository(ITwitchStreamDataStore dataStore) 
+        public TwitchChannelRepository(ITwitchChannelDataStore dataStore) 
         {
             _dataStore = dataStore;
         }
 
-        public TwitchStreamEntity ConnectStream(string channelName, string accessToken)
+        public TwitchChannelEntity ConnectChannel(string channelName, string accessToken)
         {
             var id = TwitchEntityId.Create(channelName);
             if (!_entityDic.ContainsKey(id))
             {
-                var entity = _dataStore.GetTwitchStream(id, channelName, accessToken);
+                var entity = _dataStore.GetTwitchChannel(id, channelName, accessToken);
                 _entityDic.Add(id, entity);
                 return entity;
             }
@@ -42,7 +42,7 @@ namespace WakuLive.Core.Data
             }
         }
 
-        public void DisconnectStream(string id)
+        public void DisconnectChannel(string id)
         {
             if (_entityDic.ContainsKey(id))
             {

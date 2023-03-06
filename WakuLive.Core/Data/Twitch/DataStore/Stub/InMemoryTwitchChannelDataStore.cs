@@ -12,12 +12,12 @@ using WakuLive.Core.Domain;
 
 namespace WakuLive.Core.Data
 {
-    public class InMemoryTwitchStreamDataStore : ITwitchStreamDataStore
+    public class InMemoryTwitchChannelDataStore : ITwitchChannelDataStore
     {
-        public TwitchStreamEntity GetTwitchStream(string id, string channelName, string accessToken)
+        public TwitchChannelEntity GetTwitchChannel(string id, string channelName, string accessToken)
         {
             var disposables = new CompositeDisposable();
-            var subject = new Subject<TwitchStreamInformationEntity>();
+            var subject = new Subject<TwitchChannelInformationEntity>();
             var intervalDiposable = Observable.Interval(TimeSpan.FromSeconds(10))
                                               .StartWith(0)
                                               .Select(x => GetStreamInformation(channelName, accessToken, ex =>
@@ -42,20 +42,20 @@ namespace WakuLive.Core.Data
             disposables.Add(completeOnDispose);
             disposables.Add(subject);
 
-            var entity = new TwitchStreamEntity(id, subject, disposables);
+            var entity = new TwitchChannelEntity(id, subject, disposables);
             return entity;
         }
 
-        public IObservable<TwitchStreamInformationEntity> GetStreamInformation(string channelName, string accessToken, Action<Exception> onError)
+        public IObservable<TwitchChannelInformationEntity> GetStreamInformation(string channelName, string accessToken, Action<Exception> onError)
         {
             return Observable.Timer(TimeSpan.FromMilliseconds(100))
                              .Select(x => CreateChannelInformation());
         }
 
         private int viewerCount = 114;
-        private TwitchStreamInformationEntity CreateChannelInformation()
+        private TwitchChannelInformationEntity CreateChannelInformation()
         {
-            var data = new TwitchStreamInformationEntityData()
+            var data = new TwitchChannelInformationEntityData()
             {
                 BroadcasterName = "Test User",
                 ViewerCount = viewerCount++,
@@ -64,7 +64,7 @@ namespace WakuLive.Core.Data
 
             Debug.Print("InMemoryTwitchStreamRepository: CreateChannelInformation");
 
-            var entity = new TwitchStreamInformationEntity(data);
+            var entity = new TwitchChannelInformationEntity(data);
             return entity;
         }
     }

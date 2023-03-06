@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WakuLive.Core.Domain
 {
-    public class DisconnectTwitchStreamOutput
+    public class DisconnectTwitchChannelOutput
     {
     }
 }
