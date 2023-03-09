@@ -17,20 +17,18 @@ namespace WakuLive.VM
 
         public LiveStreamChannelTabViewModel() { }
 
-        public LiveStreamChannelTabItemViewModel CreateItem()
+        public void AddTabItem(LiveStreamChannelTabItemViewModel tabItem) 
         {
-            var viewModel = new LiveStreamChannelTabItemViewModel();
-            Items.Add(viewModel);
-            return viewModel;
+            Items.Add(tabItem);
         }
 
-        public void RemoveItem(string id) 
+        public void RemoveTabItem(string id) 
         {
-            var content = Items.Where(x => x.Id == id)
-                                  .First();
-            if (content != null)
+            var item = Items.Where(x => x.Id == id)
+                            .First();
+            if (item != null)
             {
-                Items.Remove(content);
+                Items.Remove(item);
             }
         }
     }

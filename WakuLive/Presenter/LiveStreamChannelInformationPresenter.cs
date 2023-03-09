@@ -8,11 +8,13 @@ using WakuLive.VM;
 
 namespace WakuLive.Presenter
 {
-    public class LiveStreamChannelInformationPresenter
+    public class LiveStreamChannelInformationPresenter : IDisposable
     {
         private IDisposable _diposables;
         private LiveStreamChannelInformationViewModel _viewModel;
-        public LiveStreamChannelInformationPresenter(LiveStreamChannelInformationViewModel viewModel) 
+        public LiveStreamChannelInformationPresenter()  { }
+
+        public void SetViewModel(LiveStreamChannelInformationViewModel viewModel) 
         {
             _viewModel = viewModel;
         }
@@ -21,13 +23,13 @@ namespace WakuLive.Presenter
         {
             _diposables?.Dispose();
             _diposables = model.ChannelInformationObservable
-                               .Subscribe(x => _viewModel.AddChannelInformation(x));
+                               .Subscribe(x => _viewModel.SetChannelInformation(x));
         }
 
-        public void DeleteChannelModel()
-        { 
+        public void Dispose()
+        {
             _diposables?.Dispose();
-            _viewModel.Dispose();
+            _viewModel?.Dispose();
         }
     }
 }

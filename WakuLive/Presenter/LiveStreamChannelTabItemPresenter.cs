@@ -11,41 +11,25 @@ using WakuLive.VM;
 
 namespace WakuLive.Presenter
 {
-    public class LiveStreamChannelTabItemPresenter
+    public class LiveStreamChannelTabItemPresenter : IDisposable
     {
-        private LiveStreamChannelTabItemViewModel _tabItemViewModel;
+        private LiveStreamChannelTabItemViewModel _viewModel;
+        public LiveStreamChannelTabItemPresenter() { }
 
-        private LiveStreamChatListBoxPresenter _chatListBoxPresenter;
-        private LiveStreamChannelInformationPresenter _channelInformationPresenter;
-
-        public LiveStreamChannelTabItemPresenter(LiveStreamChannelTabItemViewModel viewModel) 
+        public void SetViewModel(LiveStreamChannelTabItemViewModel viewModel) 
         {
-            _tabItemViewModel = viewModel;
+            _viewModel = viewModel;
         }
 
-        public void AddChatModel(ChatModel model, ICommandFactory commandFactory) 
+        public void SetChatModel(string id, ChatModel model, ICommandFactory commandFactory) 
         {
-            _tabItemViewModel.AddChatModel(model);
-            _tabItemViewModel.AddDisconnectChatCommand(commandFactory.GetDisconnectChatCommand());
-            var listBoxViewModel = _tabItemViewModel.CreateChatListBox();
-            _chatListBoxPresenter = new LiveStreamChatListBoxPresenter(listBoxViewModel);
-            _chatListBoxPresenter.AddChatModel(model);
+            _viewModel.SetId(id);
+            _viewModel.SetDisconnectChatCommand(commandFactory.GetDisconnectChatCommand());
         }
 
-        public void AddChannelModel(ChannelModel model, ICommandFactory commandFactory)
+        public void Dispose()
         {
-            var channelInformationViewModel = _tabItemViewModel.CreateChannelInformation();
-            _channelInformationPresenter = new LiveStreamChannelInformationPresenter(channelInformationViewModel);
-            _channelInformationPresenter.AddChannelModel(model);
-        }
-
-        public void DeleteModels()
-        {
-            _chatListBoxPresenter.DeleteChatModel();
-            _channelInformationPresenter.DeleteChannelModel();
-            _tabItemViewModel.Dispose();
-            _chatListBoxPresenter = null;
-            _channelInformationPresenter = null;
+            _viewModel.Dispose();
         }
     }
 }

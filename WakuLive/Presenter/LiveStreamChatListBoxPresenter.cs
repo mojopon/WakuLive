@@ -11,27 +11,29 @@ using WakuLive.VM;
 
 namespace WakuLive.Presenter
 {
-    public class LiveStreamChatListBoxPresenter 
+    public class LiveStreamChatListBoxPresenter : IDisposable
     {
         private IDisposable _disposable;
         private LiveStreamChatListBoxViewModel _viewModel;
 
-        public LiveStreamChatListBoxPresenter(LiveStreamChatListBoxViewModel viewModel) 
+        public LiveStreamChatListBoxPresenter() { }
+
+        public void SetViewModel(LiveStreamChatListBoxViewModel viewModel) 
         {
-            _viewModel= viewModel;
+            _viewModel = viewModel;
         }
 
-        public void AddChatModel(ChatModel model)
+        public void SetChatModel(ChatModel model)
         {
             _disposable?.Dispose();
             _disposable = model.ChatMessageObservable
                                .Subscribe(x => _viewModel.AddChatMessage(x));    
         }
 
-        public void DeleteChatModel() 
+        public void Dispose()
         {
             _disposable?.Dispose();
-            _viewModel.Dispose();
+            _viewModel?.Dispose();
         }
     }
 }

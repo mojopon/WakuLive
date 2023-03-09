@@ -20,9 +20,9 @@ namespace WakuLive.Presenter
             _liveStreamChannelTabPresenter = liveStreamChannelTabPresenter;
         }
 
-        public void AddModels(string id, ChatModel chatModel, ChannelModel channelModel)
+        public void SetModels(string id, ChatModel chatModel, ChannelModel channelModel)
         {
-            _liveStreamChannelTabPresenter.AddModels(id, chatModel, channelModel, _commandFactory);
+            _liveStreamChannelTabPresenter.SetModels(id, chatModel, channelModel, _commandFactory);
         }
 
         public void DeleteModels(string id)

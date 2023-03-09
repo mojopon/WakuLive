@@ -14,53 +14,37 @@ namespace WakuLive.Presenter
 {
     public class LiveStreamChannelTabPresenter 
     {
-        private LiveStreamChannelTabViewModel _tabViewModel;
-        private Dictionary<string, LiveStreamChannelTabItemPresenter> _tabItemPresenters = new Dictionary<string, LiveStreamChannelTabItemPresenter>();
+        private LiveStreamChannelTabViewModel _channelTabViewModel;
+        private LiveStreamChannelTabItemsPresenter _channelTabItemsPresenter;
 
-        public LiveStreamChannelTabPresenter(LiveStreamChannelTabViewModel viewModel) 
+        public LiveStreamChannelTabPresenter(LiveStreamChannelTabItemsPresenter tabItemsPresenter) 
         {
-            _tabViewModel = viewModel;
+            _channelTabItemsPresenter = tabItemsPresenter;
+        }
+
+        public void SetViewModel(LiveStreamChannelTabViewModel tabViewModel) 
+        {
+            _channelTabViewModel = tabViewModel;
         }
 
         /// <summary>
-        /// Modelsに対応したViewModel(View)とPresenterを作成して管理する
+        /// ChannelTabItemsPresenterにModelをセットする
         /// </summary>
         /// <param name="chatModel"></param>
         /// <param name="commandFactory"></param>
-        public void AddModels(string id, ChatModel chatModel, ChannelModel channelModel, ICommandFactory commandFactory)
+        public void SetModels(string id, ChatModel chatModel, ChannelModel channelModel, ICommandFactory commandFactory)
         {
-            var tabItemPresenter = GetOrCreateItem(id);
-            tabItemPresenter.AddChatModel(chatModel, commandFactory);
-            tabItemPresenter.AddChannelModel(channelModel, commandFactory);
-        }
-
-        private LiveStreamChannelTabItemPresenter GetOrCreateItem(string id) 
-        {
-            if (_tabItemPresenters.ContainsKey(id))
-            {
-                return _tabItemPresenters[id];
-            }
-            else
-            {
-                var tabItemViewModel = _tabViewModel.CreateItem();
-                var tabItemPresenter = new LiveStreamChannelTabItemPresenter(tabItemViewModel);
-                _tabItemPresenters.Add(id, tabItemPresenter);
-                return tabItemPresenter;
-            }
+            _channelTabItemsPresenter.SetModels(_channelTabViewModel, id, chatModel, channelModel, commandFactory);
         }
 
         /// <summary>
-        /// Idに対応したViewModel(View)とPresenterを削除・破棄する
+        /// ChannelTabItemsPresenterにセットされたModelを削除する
         /// </summary>
         public void DeleteModels(string id)
         {
-            if (_tabItemPresenters.ContainsKey(id)) 
-            {
-                Debug.Print("Remove Chat Model:" + id);
-                _tabViewModel.RemoveItem(id);
-                _tabItemPresenters[id].DeleteModels();
-                _tabItemPresenters.Remove(id);
-            }
+            Debug.Print("Remove Chat Model:" + id);
+            _channelTabViewModel.RemoveTabItem(id);
+            _channelTabItemsPresenter.DeleteModels(id);
         }
     }
 }

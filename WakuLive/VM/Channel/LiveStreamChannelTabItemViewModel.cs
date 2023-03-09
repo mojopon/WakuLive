@@ -20,17 +20,17 @@ namespace WakuLive.VM
         public LiveStreamChannelInformationViewModel LiveStreamChannelInformationViewModel { get; private set; }
         public ReactiveCommand CloseCommand { get; private set; }
 
-        public LiveStreamChannelTabItemViewModel(){ }
+        public LiveStreamChannelTabItemViewModel() { }
 
-        public void AddChatModel(ChatModel model) 
+        public void SetId(string id)
         {
-            Id = model.Id;
-            Name = new ReactiveProperty<string>(model.Id);
+            Id = id;
+            Name = new ReactiveProperty<string>(id);
         }
 
-        public void AddDisconnectChatCommand(DisconnectChatCommand disconnectChatCommand) 
+        public void SetDisconnectChatCommand(DisconnectChatCommand disconnectChatCommand)
         {
-            var command = new ReactiveCommand(Observable.Return(true)).WithSubscribe(() => 
+            var command = new ReactiveCommand(Observable.Return(true)).WithSubscribe(() =>
             {
                 disconnectChatCommand.Execute(Id);
                 this.Dispose();
@@ -39,18 +39,14 @@ namespace WakuLive.VM
             CloseCommand = command;
         }
 
-        public LiveStreamChatListBoxViewModel CreateChatListBox() 
+        public void SetChatListBox(LiveStreamChatListBoxViewModel listBox)
         {
-            var viewModel = new LiveStreamChatListBoxViewModel();
-            LiveStreamChatListBoxViewModel = viewModel;
-            return viewModel;
+            LiveStreamChatListBoxViewModel = listBox;
         }
 
-        public LiveStreamChannelInformationViewModel CreateChannelInformation() 
+        public void SetChannelInformation(LiveStreamChannelInformationViewModel channelInformation)
         {
-            var viewModel = new LiveStreamChannelInformationViewModel();
-            LiveStreamChannelInformationViewModel = viewModel;
-            return viewModel;
+            LiveStreamChannelInformationViewModel = channelInformation;
         }
     }
 }

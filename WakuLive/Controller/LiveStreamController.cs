@@ -66,7 +66,7 @@ namespace WakuLive.Controller
 
             var id = chatModel.Id;
 
-            _liveStreamPresenter.AddModels(id, chatModel, channelModel);
+            _liveStreamPresenter.SetModels(id, chatModel, channelModel);
             _statusBarController.AddChannelModel(id, channelModel);
             _textToSpeechController.StartSpeech(id, chatModel);
         }

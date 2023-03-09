@@ -15,7 +15,7 @@ namespace WakuLive.VM
         public ReactiveProperty<string> BroadcasterName { get; private set; } = new ReactiveProperty<string>();
         public ReactiveProperty<int> ViewerCount { get; private set; } = new ReactiveProperty<int>();
 
-        public void AddChannelInformation(ChannelInformationModel model) 
+        public void SetChannelInformation(ChannelInformationModel model) 
         {
             Title.Value = model.Title;
             BroadcasterName.Value = model.BroadcasterName;

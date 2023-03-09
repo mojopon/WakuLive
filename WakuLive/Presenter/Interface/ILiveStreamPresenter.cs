@@ -9,7 +9,7 @@ namespace WakuLive.Presenter
 {
     public interface ILiveStreamPresenter
     {
-        void AddModels(string id, ChatModel chatModel, ChannelModel channelModel);
+        void SetModels(string id, ChatModel chatModel, ChannelModel channelModel);
         void DeleteModels(string id);
     }
 }
