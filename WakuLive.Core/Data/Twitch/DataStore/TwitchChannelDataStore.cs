@@ -76,16 +76,15 @@ namespace WakuLive.Core.Data.DataStore
         /// <returns></returns>
         private async Task<TwitchChannelInformationEntity> GetChannelInformationAsync(string channelName, string accessToken, Action<Exception> onError)
         {
+            var getUsersResponse = await _api.Helix.Users.GetUsersAsync(null, new List<string> { channelName }, accessToken);
             var getStreamsResponse = await _api.Helix.Streams.GetStreamsAsync(null, 20, null, null, null, new List<string> { channelName }, accessToken);
 
-            if (getStreamsResponse.Streams.Length > 0)
+            if (getStreamsResponse.Streams.Length > 0 && getUsersResponse.Users.Length > 0)
             {
-                return CreateTwitchChannelInformationEntity(getStreamsResponse);
+                return CreateTwitchChannelInformationEntity(getUsersResponse, getStreamsResponse);
             }
             else
             {
-                var getUsersResponse = await _api.Helix.Users.GetUsersAsync(null, new List<string> { channelName }, accessToken);
-
                 if (getUsersResponse.Users.Length > 0)
                 {
                     var getChannelInformationsResponse = await _api.Helix.Channels.GetChannelInformationAsync(getUsersResponse.Users[0].Id, accessToken);
@@ -109,8 +108,9 @@ namespace WakuLive.Core.Data.DataStore
         }
 
         // GetStreamsResponseでStream状態が取得できた際のメソッド（TwitchチャンネルがOnline・配信中）
-        private TwitchChannelInformationEntity CreateTwitchChannelInformationEntity(GetStreamsResponse getStreamsResponse) 
+        private TwitchChannelInformationEntity CreateTwitchChannelInformationEntity(GetUsersResponse getUsersResponse, GetStreamsResponse getStreamsResponse) 
         {
+            var user = getUsersResponse.Users[0];
             var stream = getStreamsResponse.Streams[0];
             var data = new TwitchChannelInformationEntityData()
             {
@@ -120,7 +120,7 @@ namespace WakuLive.Core.Data.DataStore
                 Title = stream.Title,
                 GameId = stream.GameId,
                 GameName = stream.GameName,
-                ThumbnailUrl = stream.ThumbnailUrl,
+                ThumbnailUrl = user.ProfileImageUrl,
                 IsStreaming = true,
             };
             return new TwitchChannelInformationEntity(data);
