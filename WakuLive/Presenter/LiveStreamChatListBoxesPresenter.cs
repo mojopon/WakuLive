@@ -19,8 +19,7 @@ namespace WakuLive.Presenter
             var chatListBox = new LiveStreamChatListBoxViewModel();
             parent.SetChatListBox(chatListBox);
 
-            var chatListBoxPresenter = new LiveStreamChatListBoxPresenter();
-            chatListBoxPresenter.SetViewModel(chatListBox);
+            var chatListBoxPresenter = new LiveStreamChatListBoxPresenter(chatListBox);
             chatListBoxPresenterDict.Add(id, chatListBoxPresenter);
             chatListBoxPresenter.SetChatModel(chatModel);
         }

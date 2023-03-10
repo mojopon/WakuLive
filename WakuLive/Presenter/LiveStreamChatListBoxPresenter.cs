@@ -16,9 +16,7 @@ namespace WakuLive.Presenter
         private IDisposable _disposable;
         private LiveStreamChatListBoxViewModel _viewModel;
 
-        public LiveStreamChatListBoxPresenter() { }
-
-        public void SetViewModel(LiveStreamChatListBoxViewModel viewModel) 
+        public LiveStreamChatListBoxPresenter(LiveStreamChatListBoxViewModel viewModel) 
         {
             _viewModel = viewModel;
         }

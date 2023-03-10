@@ -43,7 +43,6 @@ namespace WakuLive
 
             _provider = _services.BuildServiceProvider();
 
-            SetViewModelsToPresenters();
             BindCommands();
         }
 
@@ -150,11 +149,6 @@ namespace WakuLive
         {
             _services.AddSingleton<CommandFactory>();
             _services.AddSingleton<ICommandFactory>(x => x.GetRequiredService<CommandFactory>());
-        }
-
-        private void SetViewModelsToPresenters() 
-        {
-            _provider.GetRequiredService<LiveStreamChannelTabPresenter>().SetViewModel(_provider.GetRequiredService<LiveStreamChannelTabViewModel>());
         }
 
         private void BindCommands() 

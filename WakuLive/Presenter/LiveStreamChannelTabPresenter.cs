@@ -17,14 +17,10 @@ namespace WakuLive.Presenter
         private LiveStreamChannelTabViewModel _channelTabViewModel;
         private LiveStreamChannelTabItemsPresenter _channelTabItemsPresenter;
 
-        public LiveStreamChannelTabPresenter(LiveStreamChannelTabItemsPresenter tabItemsPresenter) 
-        {
-            _channelTabItemsPresenter = tabItemsPresenter;
-        }
-
-        public void SetViewModel(LiveStreamChannelTabViewModel tabViewModel) 
+        public LiveStreamChannelTabPresenter(LiveStreamChannelTabViewModel tabViewModel, LiveStreamChannelTabItemsPresenter tabItemsPresenter) 
         {
             _channelTabViewModel = tabViewModel;
+            _channelTabItemsPresenter = tabItemsPresenter;
         }
 
         /// <summary>

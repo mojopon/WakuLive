@@ -19,8 +19,7 @@ namespace WakuLive.Presenter
             var channelInformation = new LiveStreamChannelInformationViewModel();
             parent.SetChannelInformation(channelInformation);
 
-            var channelInformationPresenter = new LiveStreamChannelInformationPresenter();
-            channelInformationPresenter.SetViewModel(channelInformation);
+            var channelInformationPresenter = new LiveStreamChannelInformationPresenter(channelInformation);
             channelInformationPresentersDict.Add(id, channelInformationPresenter);
             channelInformationPresenter.AddChannelModel(channelModel);
         }

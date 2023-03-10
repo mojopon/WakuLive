@@ -14,9 +14,7 @@ namespace WakuLive.Presenter
     public class LiveStreamChannelTabItemPresenter : IDisposable
     {
         private LiveStreamChannelTabItemViewModel _viewModel;
-        public LiveStreamChannelTabItemPresenter() { }
-
-        public void SetViewModel(LiveStreamChannelTabItemViewModel viewModel) 
+        public LiveStreamChannelTabItemPresenter(LiveStreamChannelTabItemViewModel viewModel) 
         {
             _viewModel = viewModel;
         }

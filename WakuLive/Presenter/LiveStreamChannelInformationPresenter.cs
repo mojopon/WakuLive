@@ -12,9 +12,7 @@ namespace WakuLive.Presenter
     {
         private IDisposable _diposables;
         private LiveStreamChannelInformationViewModel _viewModel;
-        public LiveStreamChannelInformationPresenter()  { }
-
-        public void SetViewModel(LiveStreamChannelInformationViewModel viewModel) 
+        public LiveStreamChannelInformationPresenter(LiveStreamChannelInformationViewModel viewModel)  
         {
             _viewModel = viewModel;
         }

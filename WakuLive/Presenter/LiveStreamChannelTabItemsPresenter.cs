@@ -26,8 +26,7 @@ namespace WakuLive.Presenter
             var tabItem = new LiveStreamChannelTabItemViewModel();
             parent.AddTabItem(tabItem);
 
-            var tabItemPresenter = new LiveStreamChannelTabItemPresenter();
-            tabItemPresenter.SetViewModel(tabItem);
+            var tabItemPresenter = new LiveStreamChannelTabItemPresenter(tabItem);
             tabItemPresenterDic.Add(id, tabItemPresenter);
             tabItemPresenter.SetChatModel(id, chatModel, commandFactory);
 
