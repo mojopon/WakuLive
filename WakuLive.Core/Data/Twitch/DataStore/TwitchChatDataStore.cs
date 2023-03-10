@@ -31,7 +31,8 @@ namespace WakuLive.Core.Data
 
             var entity = CreateEntity(client, id, channelName);
 
-            client.Connect();
+            // メインスレッドでclient.Connect()を行うと数秒フリーズするのでConnectのみTaskで行う
+            var task = Task.Run(() => client.Connect());
             return entity;
         }
 
