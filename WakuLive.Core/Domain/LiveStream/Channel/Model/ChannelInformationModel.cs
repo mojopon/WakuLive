@@ -12,6 +12,7 @@ namespace WakuLive.Core.Domain
         public int ViewerCount { get; private set; }
         public string Title { get; private set; }
         public bool IsStreaming { get; private set; }
+        public string ThumbnailUrl { get; private set; }
 
         public ChannelInformationModel(ChannelInformationModelData data) 
         {
@@ -19,6 +20,7 @@ namespace WakuLive.Core.Domain
             ViewerCount = data.ViewerCount;
             Title = data.Title;
             IsStreaming = data.IsStreaming;
+            ThumbnailUrl = data.ThumbnailUrl;
         }
     }
 }

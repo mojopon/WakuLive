@@ -23,6 +23,7 @@ namespace WakuLive.Core.Domain
                                         Title = x.Title,
                                         BroadcasterName = x.BroadcasterName,
                                         IsStreaming = x.IsStreaming,
+                                        ThumbnailUrl = x.ThumbnailUrl,
                                     };
                                     var channelInformationModel = new ChannelInformationModel(data);
                                     subject.OnNext(channelInformationModel);
