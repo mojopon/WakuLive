@@ -22,8 +22,9 @@ namespace WakuLive.Core.Data.Stub
             var intervalDisposable = Observable.Interval(TimeSpan.FromSeconds(1))
                                                .Subscribe(x =>
                                                {
+                                                   var data = TwitchChatMessageTemplates.ChatMessageTemplateList[i % TwitchChatMessageTemplates.ChatMessageTemplateList.Count];
+                                                   var message = new TwitchChatMessageEntity(data);
                                                    i++;
-                                                   var message = CreateMessage(i.ToString());
                                                    _subject.OnNext(message);
                                                });
 
@@ -38,18 +39,6 @@ namespace WakuLive.Core.Data.Stub
 
             var entity = new TwitchChatClientEntity(id, _subject, compositeDisposable);
             return entity;
-        }
-
-        private TwitchChatMessageEntity CreateMessage(string message) 
-        {
-            var data = new TwitchChatMessageEntityData()
-            {
-                DisplayName = "DisplayName",
-                UserName = "UserName",
-                Message = message,
-            };
-
-            return new TwitchChatMessageEntity(data);
         }
     }
 }

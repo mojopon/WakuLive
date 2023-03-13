@@ -10,7 +10,7 @@
              d:DataContext="{d:DesignInstance vm:LiveStreamChatListBoxViewModel}">
 
     <Border BorderBrush="LightGray" BorderThickness="1">
-        <ListBox Name="ListBox" ItemsSource="{Binding Items}" BorderThickness="0">
+        <ListBox Name="ListBox" ItemsSource="{Binding Items}" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
             <ListBox.ItemTemplateSelector>
                 <local:ListBoxItemDataTemplateSelector/>
             </ListBox.ItemTemplateSelector>

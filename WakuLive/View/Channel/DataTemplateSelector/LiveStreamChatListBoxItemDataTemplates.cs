@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using WakuLive.VM;
 
 namespace WakuLive.View.Channel.DataTemplateSelector
@@ -15,22 +16,24 @@ namespace WakuLive.View.Channel.DataTemplateSelector
         {
             var dataTemplate = new DataTemplate();
 
-            var wrapPanelFactory = new FrameworkElementFactory(typeof(WrapPanel));
+            var textBlock = new FrameworkElementFactory(typeof(TextBlock));
+            textBlock.SetValue(TextBlock.TextProperty, vm.Name);
+            textBlock.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
 
-            var nameTextBlock = new FrameworkElementFactory(typeof(TextBlock));
-            nameTextBlock.SetValue(TextBlock.TextProperty, vm.Name);
+            var name = new FrameworkElementFactory(typeof(Run));
+            name.SetValue(Run.TextProperty, vm.Name);
 
-            var separatorTextBlock = new FrameworkElementFactory(typeof(TextBlock));
-            separatorTextBlock.SetValue(TextBlock.TextProperty, ": ");
+            var separator = new FrameworkElementFactory(typeof(Run));
+            separator.SetValue(Run.TextProperty, ": ");
 
-            var commentTextBlock = new FrameworkElementFactory(typeof(TextBlock));
-            commentTextBlock.SetValue(TextBlock.TextProperty, vm.Comment);
+            var comment = new FrameworkElementFactory(typeof(Run));
+            comment.SetValue(Run.TextProperty, vm.Comment);
 
-            wrapPanelFactory.AppendChild(nameTextBlock);
-            wrapPanelFactory.AppendChild(separatorTextBlock);
-            wrapPanelFactory.AppendChild(commentTextBlock);
+            textBlock.AppendChild(name);
+            textBlock.AppendChild(separator);
+            textBlock.AppendChild(comment);
 
-            dataTemplate.VisualTree = wrapPanelFactory;
+            dataTemplate.VisualTree = textBlock;
             return dataTemplate;
         }
     }
