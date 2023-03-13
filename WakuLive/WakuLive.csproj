@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <None Remove="Resources\user.png" />
-    <None Remove="View\AccountConfigurationTabItem.xaml" />
     <None Remove="View\Channel\LiveStreamAddressBar.xaml" />
     <None Remove="View\Channel\LiveStreamChannelInformation.xaml" />
     <None Remove="View\Channel\MenuBar.xaml" />
@@ -20,6 +19,7 @@
     <None Remove="View\LiveStreamChatLog.xaml" />
     <None Remove="View\LiveStreamChatTab.xaml" />
     <None Remove="View\LiveStreamChatTabContent.xaml" />
+    <None Remove="View\TwitchConfigurationTabItem.xaml" />
   </ItemGroup>
 
   <ItemGroup>

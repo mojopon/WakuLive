@@ -8,10 +8,10 @@ namespace WakuLive.VM
 {
     public class ConfigurationTabViewModel
     {
-        public AccountConfigurationTabItemViewModel AccountConfigurationTabItemViewModel { get; set; }
-        public ConfigurationTabViewModel(AccountConfigurationTabItemViewModel accountConfigurationTabItemViewModel) 
+        public TwitchConfigurationTabItemViewModel TwitchConfigurationTabItemViewModel { get; set; }
+        public ConfigurationTabViewModel(TwitchConfigurationTabItemViewModel twitchConfigurationTabItemViewModel) 
         {
-            AccountConfigurationTabItemViewModel = accountConfigurationTabItemViewModel;
+            TwitchConfigurationTabItemViewModel = twitchConfigurationTabItemViewModel;
         }
     }
 }

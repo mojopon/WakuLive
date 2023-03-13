@@ -16,12 +16,12 @@ using WakuLive.VM;
 
 namespace WakuLive.Presenter
 {
-    public class AccountConfigurationTabItemPresenter : ICommandBindable
+    public class TwitchConfigurationTabItemPresenter : ICommandBindable
     {
         private CompositeDisposable disposables = new CompositeDisposable();
         private IWakuLiveConfiguration _configuration;
-        private AccountConfigurationTabItemViewModel _viewModel;
-        public AccountConfigurationTabItemPresenter(IWakuLiveConfiguration configuration, AccountConfigurationTabItemViewModel viewModel) 
+        private TwitchConfigurationTabItemViewModel _viewModel;
+        public TwitchConfigurationTabItemPresenter(IWakuLiveConfiguration configuration, TwitchConfigurationTabItemViewModel viewModel) 
         {
             _configuration = configuration;
             _viewModel = viewModel;
@@ -33,7 +33,7 @@ namespace WakuLive.Presenter
 
         public void AddTwitchAccessToken(string accessToken) 
         {
-            Debug.Print("AccountConfigurationTabItemPresenter : Add Twitch AccessToken:" + accessToken);
+            Debug.Print("TwitchConfigurationTabItemPresenter : Add Twitch AccessToken:" + accessToken);
         }
 
         public void Bind(ServiceProvider provider)

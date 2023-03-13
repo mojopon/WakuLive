@@ -12,19 +12,19 @@ using WakuLive.View;
 
 namespace WakuLive.Controller
 {
-    public class AccountConfigurationController
+    public class TwitchConfigurationController
     {
         private IWakuLiveClient _wakuLiveClient;
         private ITwitchAuthInteractor _twitchAuthInteractor;
-        private AccountConfigurationTabItemPresenter _accountConfigurationTabItemPresenter;
+        private TwitchConfigurationTabItemPresenter _twitchConfigurationTabItemPresenter;
 
-        public AccountConfigurationController(IWakuLiveClient wakuLiveClient,
+        public TwitchConfigurationController(IWakuLiveClient wakuLiveClient,
                                               ITwitchAuthInteractor twitchAuthInteractor,
-                                              AccountConfigurationTabItemPresenter accountConfigurationTabItemPresenter)
+                                              TwitchConfigurationTabItemPresenter twitchConfigurationTabItemPresenter)
         {
             _wakuLiveClient = wakuLiveClient;
             _twitchAuthInteractor = twitchAuthInteractor;
-            _accountConfigurationTabItemPresenter = accountConfigurationTabItemPresenter;
+            _twitchConfigurationTabItemPresenter = twitchConfigurationTabItemPresenter;
         }
 
         private IDisposable _twitchAccessTokenDisposable;

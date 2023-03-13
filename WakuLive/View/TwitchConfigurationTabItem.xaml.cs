@@ -18,9 +18,9 @@ namespace WakuLive.View
     /// <summary>
     /// Interaction logic for AccountConfigurationTabItem.xaml
     /// </summary>
-    public partial class AccountConfigurationTabItem : UserControl
+    public partial class TwitchConfigurationTabItem : UserControl
     {
-        public AccountConfigurationTabItem()
+        public TwitchConfigurationTabItem()
         {
             InitializeComponent();
         }

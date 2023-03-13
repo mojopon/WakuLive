@@ -11,11 +11,11 @@ namespace WakuLive.Command
 {
     public class UnlinkTwitchAccountCommand : ICommand
     {
-        private AccountConfigurationController _controller;
+        private TwitchConfigurationController _controller;
 
         public event EventHandler? CanExecuteChanged;
 
-        public UnlinkTwitchAccountCommand(AccountConfigurationController controller)
+        public UnlinkTwitchAccountCommand(TwitchConfigurationController controller)
         {
             _controller = controller;
         }

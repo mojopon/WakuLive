@@ -10,8 +10,8 @@
              d:DataContext="{d:DesignInstance vm:ConfigurationTabViewModel}">
     <Grid>
         <TabControl>
-            <TabItem Header="アカウント">
-                <local:AccountConfigurationTabItem DataContext="{Binding AccountConfigurationTabItemViewModel}"/>
+            <TabItem Header="Twitch">
+                <local:TwitchConfigurationTabItem DataContext="{Binding TwitchConfigurationTabItemViewModel}"/>
             </TabItem>
         </TabControl>
     </Grid>

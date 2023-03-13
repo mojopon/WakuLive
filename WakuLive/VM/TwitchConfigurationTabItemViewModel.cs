@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace WakuLive.VM
 {
-    public class AccountConfigurationTabItemViewModel : ViewModel
+    public class TwitchConfigurationTabItemViewModel : ViewModel
     {
         private ReactiveCommand _linkTwitchCommand;
         public ReactiveCommand LinkTwitchCommand 
@@ -34,7 +34,7 @@ namespace WakuLive.VM
 
         public ReactiveProperty<string> LinkTwitchButtonText { get; set; } = new ReactiveProperty<string>();
 
-        public AccountConfigurationTabItemViewModel() 
+        public TwitchConfigurationTabItemViewModel() 
         {
             SetTwitchButtonLinked(false);
         }

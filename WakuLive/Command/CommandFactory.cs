@@ -10,10 +10,10 @@ namespace WakuLive.Command
     public class CommandFactory : ICommandFactory
     {
         private WakuLiveClientController _wakuLiveClientController;
-        private AccountConfigurationController _accountConfigurationController;
+        private TwitchConfigurationController _accountConfigurationController;
 
         public CommandFactory(WakuLiveClientController wakuLiveClientController,
-                              AccountConfigurationController accountConfigurationController) 
+                              TwitchConfigurationController accountConfigurationController) 
         {
             _wakuLiveClientController = wakuLiveClientController;
             _accountConfigurationController = accountConfigurationController;

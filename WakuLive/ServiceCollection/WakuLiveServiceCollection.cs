@@ -108,7 +108,7 @@ namespace WakuLive
             _services.AddSingleton<WakuLiveClientMainWindowViewModel>();
 
             // ConfigurationWindow ViewModel Groups
-            _services.AddSingleton<AccountConfigurationTabItemViewModel>();
+            _services.AddSingleton<TwitchConfigurationTabItemViewModel>();
             _services.AddSingleton<ConfigurationTabViewModel>();
             _services.AddSingleton<ConfigurationWindowViewModel>();
         }
@@ -120,8 +120,8 @@ namespace WakuLive
             _services.AddSingleton<MenuBarPresenter>();
             _services.AddSingleton<ICommandBindable>(x => x.GetRequiredService<MenuBarPresenter>());
 
-            _services.AddSingleton<AccountConfigurationTabItemPresenter>();
-            _services.AddSingleton<ICommandBindable>(x => x.GetRequiredService<AccountConfigurationTabItemPresenter>());
+            _services.AddSingleton<TwitchConfigurationTabItemPresenter>();
+            _services.AddSingleton<ICommandBindable>(x => x.GetRequiredService<TwitchConfigurationTabItemPresenter>());
 
             _services.AddSingleton<LiveStreamAddressBarPresenter>();
             _services.AddSingleton<ICommandBindable>(x => x.GetRequiredService<LiveStreamAddressBarPresenter>());
@@ -138,7 +138,7 @@ namespace WakuLive
 
         private void RegisterControllers() 
         {
-            _services.AddSingleton<AccountConfigurationController>();
+            _services.AddSingleton<TwitchConfigurationController>();
             _services.AddSingleton<TextToSpeechController>();
             _services.AddSingleton<StatusBarController>();
             _services.AddSingleton<LiveStreamController>();

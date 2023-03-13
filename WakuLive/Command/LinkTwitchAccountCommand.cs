@@ -10,11 +10,11 @@ namespace WakuLive.Command
 {
     public class LinkTwitchAccountCommand : ICommand
     {
-        private AccountConfigurationController _controller;
+        private TwitchConfigurationController _controller;
 
         public event EventHandler? CanExecuteChanged;
 
-        public LinkTwitchAccountCommand(AccountConfigurationController controller) 
+        public LinkTwitchAccountCommand(TwitchConfigurationController controller) 
         {
             _controller = controller;
         }
