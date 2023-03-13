@@ -14,12 +14,14 @@ namespace WakuLive.Core.Domain
         public string Message { get; private set; }
         public string UserId { get; private set; }
         public string UserName { get; private set; }
+        public Color Color { get; private set; }
 
         public ChatMessageModel(ChatMessageModelData data) 
         {
             UserName = data.UserName;
             DisplayName = data.DisplayName;
             Message = data.Message;
+            Color = data.Color;
         }
 
         public override string ToString()

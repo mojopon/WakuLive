@@ -25,6 +25,7 @@ namespace WakuLive.Core.Domain
                               DisplayName = x.DisplayName,
                               Message = x.Message,
                               UserType = x.UserType,
+                              Color = x.Color,
                           };
                           var messageModel = new ChatMessageModel(data);
                           subject.OnNext(messageModel);

@@ -14,5 +14,6 @@ namespace WakuLive.Core.Domain
         public string UserId { get; set; }
         public string UserName { get; set; }
         public UserType UserType { get; set; }
+        public Color Color { get; set; }
     }
 }

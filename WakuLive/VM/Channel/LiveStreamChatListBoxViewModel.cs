@@ -30,6 +30,7 @@ namespace WakuLive.VM
             var item = new LiveStreamChatListBoxItemViewModel
             {
                 Name = chatMessageModel.UserName,
+                Color = chatMessageModel.Color,
                 Comment = chatMessageModel.Message,
             };
 
