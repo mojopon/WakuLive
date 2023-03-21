@@ -139,7 +139,7 @@ namespace WakuLive.Core.Data.DataStore
                 Title = channelInformation.Title,
                 GameId = channelInformation.GameId,
                 GameName = channelInformation.GameName,
-                ThumbnailUrl = user.OfflineImageUrl,
+                ThumbnailUrl = user.ProfileImageUrl,
                 IsStreaming = false,
             };
             return new TwitchChannelInformationEntity(data);
