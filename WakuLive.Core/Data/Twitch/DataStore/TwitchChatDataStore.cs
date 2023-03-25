@@ -64,6 +64,7 @@ namespace WakuLive.Core.Data
                     Channel = e.ChatMessage.Channel,
                     Color = e.ChatMessage.Color,
                     DisplayName = e.ChatMessage.DisplayName,
+                    Emotes = TwitchLibUtilities.ConvertEmotes(e.ChatMessage.EmoteSet),
                     Message = e.ChatMessage.Message,
                     RoomId = e.ChatMessage.RoomId,
                     UserId = e.ChatMessage.UserId,

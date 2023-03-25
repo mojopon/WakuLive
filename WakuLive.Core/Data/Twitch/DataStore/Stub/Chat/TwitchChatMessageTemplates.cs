@@ -31,6 +31,17 @@ namespace WakuLive.Core.Data.Stub
             },
             new TwitchChatMessageEntityData()
             {
+                DisplayName = "かものはし",
+                Emotes = new List<TwitchChatEmoteEntity>()
+                {
+                    new TwitchChatEmoteEntity("425618", 4, 6, "LUL", "https://static-cdn.jtvnw.net/emoticons/v1/425618/1.0"),
+                    new TwitchChatEmoteEntity("305954156", 12, 19, "PogChamp", "https://static-cdn.jtvnw.net/emoticons/v1/305954156/1.0"),
+                },
+                UserName = "kamonohasi",
+                Message = "ハロー LUL ハロー PogChamp こんにちは",
+            },
+            new TwitchChatMessageEntityData()
+            {
                 DisplayName = "おだやかなライオン",
                 UserName = "Lion",
                 Message = "こんにちは！今日も来ました！",

@@ -11,6 +11,7 @@ namespace WakuLive.Core.Domain
     public class ChatMessageModel
     {
         public string DisplayName { get; private set; }
+        public List<ChatEmoteModel> Emotes { get; private set; }
         public string Message { get; private set; }
         public string UserId { get; private set; }
         public string UserName { get; private set; }
@@ -19,7 +20,9 @@ namespace WakuLive.Core.Domain
         public ChatMessageModel(ChatMessageModelData data) 
         {
             UserName = data.UserName;
+            UserId = data.UserId;
             DisplayName = data.DisplayName;
+            Emotes = data.Emotes;
             Message = data.Message;
             Color = data.Color;
         }

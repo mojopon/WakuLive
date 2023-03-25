@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TwitchLib.Client.Models;
 
 namespace WakuLive.Core.Domain.Twitch.Utility
 {
-    internal static class TwitchLibUtilities
+    public static class TwitchLibUtilities
     {
         public static UserType ConvertUserType(TwitchLib.Client.Enums.UserType userType)
         {
@@ -41,6 +42,19 @@ namespace WakuLive.Core.Domain.Twitch.Utility
                         return UserType.Viewer;
                     }
             }
+        }
+
+        public static List<TwitchChatEmoteEntity> ConvertEmotes(EmoteSet emoteSet) 
+        {
+            var emoteEntities = new List<TwitchChatEmoteEntity>();
+
+            foreach (var emote in emoteSet.Emotes) 
+            {
+                var emoteEntity = new TwitchChatEmoteEntity(emote.Id, emote.StartIndex, emote.EndIndex, emote.Name, emote.ImageUrl);
+                emoteEntities.Add(emoteEntity);
+            }
+
+            return emoteEntities;
         }
     }
 }

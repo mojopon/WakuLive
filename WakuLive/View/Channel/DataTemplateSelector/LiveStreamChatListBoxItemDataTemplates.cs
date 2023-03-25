@@ -17,7 +17,6 @@ namespace WakuLive.View.Channel.DataTemplateSelector
             var dataTemplate = new DataTemplate();
 
             var textBlock = new FrameworkElementFactory(typeof(TextBlock));
-            textBlock.SetValue(TextBlock.TextProperty, vm.Name);
             textBlock.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
 
             var name = new FrameworkElementFactory(typeof(Run));

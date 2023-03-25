@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WakuLive.Core.Data;
 using WakuLive.Core.Domain;
+using WakuLive.Core.Domain.Twitch.Utility;
 
 namespace WakuLive.Core.Test.Data
 {
@@ -39,6 +40,11 @@ namespace WakuLive.Core.Test.Data
                 Bits = 100,
                 Color = new System.Drawing.Color(),
                 DisplayName = userName,
+                Emotes = new List<TwitchChatEmoteEntity>()
+                {
+                    new TwitchChatEmoteEntity("425618", 9, 11, "LUL", "http://emotes.com/id/425618"),
+                    new TwitchChatEmoteEntity("305954156", 17, 24, "PogChamp", "http://emotes.com/id/305954156"),
+                },
                 UserName = userName,
                 Channel = channelName,
                 Message = "testMessage",
@@ -51,6 +57,16 @@ namespace WakuLive.Core.Test.Data
             Assert.That(messageEntity.Bits, Is.EqualTo(messageData.Bits));
             Assert.That(messageEntity.Color, Is.EqualTo(messageData.Color));
             Assert.That(messageEntity.DisplayName, Is.EqualTo(messageData.DisplayName));
+            Assert.That(messageEntity.Emotes[0].Id, Is.EqualTo(messageData.Emotes[0].Id));
+            Assert.That(messageEntity.Emotes[0].StartIndex, Is.EqualTo(messageData.Emotes[0].StartIndex));
+            Assert.That(messageEntity.Emotes[0].EndIndex, Is.EqualTo(messageData.Emotes[0].EndIndex));
+            Assert.That(messageEntity.Emotes[0].Name, Is.EqualTo(messageData.Emotes[0].Name));
+            Assert.That(messageEntity.Emotes[0].ImageUrl, Is.EqualTo(messageData.Emotes[0].ImageUrl));
+            Assert.That(messageEntity.Emotes[1].Id, Is.EqualTo(messageData.Emotes[1].Id));
+            Assert.That(messageEntity.Emotes[1].StartIndex, Is.EqualTo(messageData.Emotes[1].StartIndex));
+            Assert.That(messageEntity.Emotes[1].EndIndex, Is.EqualTo(messageData.Emotes[1].EndIndex));
+            Assert.That(messageEntity.Emotes[1].Name, Is.EqualTo(messageData.Emotes[1].Name));
+            Assert.That(messageEntity.Emotes[1].ImageUrl, Is.EqualTo(messageData.Emotes[1].ImageUrl));
             Assert.That(messageEntity.UserName, Is.EqualTo(messageData.UserName));
             Assert.That(messageEntity.Message, Is.EqualTo(messageData.Message));
             Assert.That(messageEntity.UserId, Is.EqualTo(messageData.UserId));

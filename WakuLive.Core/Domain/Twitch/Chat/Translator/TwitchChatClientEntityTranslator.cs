@@ -5,6 +5,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Subjects;
 using System.Text;
 using System.Threading.Tasks;
+using WakuLive.Core.Domain.Twitch.Chat.Model;
 
 namespace WakuLive.Core.Domain
 {
@@ -23,6 +24,7 @@ namespace WakuLive.Core.Domain
                               UserId = x.UserId,
                               UserName = x.UserName,
                               DisplayName = x.DisplayName,
+                              Emotes = ChatEmoteEntityToChatEmoteModel(x.Emotes),
                               Message = x.Message,
                               UserType = x.UserType,
                               Color = x.Color,
@@ -40,6 +42,18 @@ namespace WakuLive.Core.Domain
             {
                 return null;
             }
+        }
+
+        private List<ChatEmoteModel> ChatEmoteEntityToChatEmoteModel(List<TwitchChatEmoteEntity> source) 
+        {
+            var emotes = new List<ChatEmoteModel>();
+
+            foreach (var entity in source) 
+            {
+                emotes.Add(new ChatEmoteModel(entity.Id, entity.StartIndex, entity.EndIndex, entity.Name, entity.ImageUrl));
+            }
+
+            return emotes;
         }
     }
 }
