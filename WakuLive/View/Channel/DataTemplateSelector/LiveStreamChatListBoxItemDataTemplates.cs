@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using WakuLive.VM;
 
@@ -14,6 +15,9 @@ namespace WakuLive.View.Channel.DataTemplateSelector
 {
     public static class LiveStreamChatListBoxItemDataTemplates
     {
+        private static readonly Double FontSize = 13.0;
+        private static readonly Double IconSize = 22.0;
+
         public static DataTemplate GetDataTemplateForUserComment(LiveStreamChatListBoxItemViewModel vm) 
         {
             var dataTemplate = new DataTemplate();
@@ -23,9 +27,13 @@ namespace WakuLive.View.Channel.DataTemplateSelector
 
             var name = new FrameworkElementFactory(typeof(Run));
             name.SetValue(Run.TextProperty, vm.Name);
+            name.SetValue(Run.ForegroundProperty, Brushes.DarkGreen);
+            name.SetValue(Run.FontWeightProperty, FontWeights.DemiBold);
+            name.SetValue(Run.FontSizeProperty, FontSize);
 
             var separator = new FrameworkElementFactory(typeof(Run));
             separator.SetValue(Run.TextProperty, ": ");
+            separator.SetValue(Run.FontSizeProperty, FontSize);
 
             textBlock.AppendChild(name);
             textBlock.AppendChild(separator);
@@ -39,8 +47,7 @@ namespace WakuLive.View.Channel.DataTemplateSelector
             {
                 if (vm.Emotes.Count == 0)
                 {
-                    var run = new FrameworkElementFactory(typeof(Run));
-                    run.SetValue(Run.TextProperty, str);
+                    var run = CreateRun(str);
                     textBlock.AppendChild(run);
                 }
                 else
@@ -52,9 +59,8 @@ namespace WakuLive.View.Channel.DataTemplateSelector
                         // エモートのStartIndex以前の文字を切り出して挿入
                         if (position != emote.StartIndex)
                         {
-                            var run = new FrameworkElementFactory(typeof(Run));
                             var text = str.Substring(position, emote.StartIndex - position);
-                            run.SetValue(Run.TextProperty, text);
+                            var run = CreateRun(text);
                             textBlock.AppendChild(run);
                             position = emote.StartIndex;
                         }
@@ -66,8 +72,8 @@ namespace WakuLive.View.Channel.DataTemplateSelector
                         if (!string.IsNullOrEmpty(fullFilePath))
                         {
                             image.SetValue(Image.SourceProperty, new BitmapImage(new Uri(fullFilePath, UriKind.Absolute)));
-                            image.SetValue(Image.WidthProperty, 20.0);
-                            image.SetValue(Image.HeightProperty, 20.0);
+                            image.SetValue(Image.WidthProperty, IconSize);
+                            image.SetValue(Image.HeightProperty, IconSize);
                             inlineUiContainer.AppendChild(image);
                             textBlock.AppendChild(inlineUiContainer);
                         }
@@ -78,9 +84,8 @@ namespace WakuLive.View.Channel.DataTemplateSelector
                         // 最後のエモート以降の文字を切り出して挿入
                         if (i + 1 == vm.Emotes.Count)
                         {
-                            var run = new FrameworkElementFactory(typeof(Run));
                             var text = str.Substring(position, str.Length - position);
-                            run.SetValue(Run.TextProperty, text);
+                            var run = CreateRun(text);
                             textBlock.AppendChild(run);
                         }
                     }
@@ -93,6 +98,14 @@ namespace WakuLive.View.Channel.DataTemplateSelector
 
             dataTemplate.VisualTree = textBlock;
             return dataTemplate;
+        }
+
+        private static FrameworkElementFactory CreateRun(string text) 
+        {
+            var run = new FrameworkElementFactory(typeof(Run));
+            run.SetValue(Run.TextProperty, text);
+            run.SetValue(Run.FontSizeProperty, FontSize);
+            return run;
         }
     }
 }
