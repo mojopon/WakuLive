@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WakuLive.Core.Domain.Twitch.Chat.Model;
 
 namespace WakuLive.VM
 {
@@ -12,5 +13,6 @@ namespace WakuLive.VM
         public string Name { get; set; }
         public Color Color { get; set; }
         public string Comment { get; set; }
+        public List<ChatEmoteModel> Emotes { get; set; }
     }
 }

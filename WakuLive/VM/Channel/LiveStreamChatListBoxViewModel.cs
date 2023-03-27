@@ -32,6 +32,7 @@ namespace WakuLive.VM
                 Name = chatMessageModel.UserName,
                 Color = chatMessageModel.Color,
                 Comment = chatMessageModel.Message,
+                Emotes = chatMessageModel.Emotes,
             };
 
             Items.Add(item);
