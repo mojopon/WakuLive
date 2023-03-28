@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 using WakuLive.VM;
 
 namespace WakuLive.View
@@ -24,6 +13,28 @@ namespace WakuLive.View
         public LiveStreamChannelTab()
         {
             InitializeComponent();
+
+            this.DataContextChanged += (s, e) =>
+            {
+                if (e.OldValue is LiveStreamChannelTabViewModel)
+                {
+                    var vm = e.OldValue as LiveStreamChannelTabViewModel;
+                    vm.ShowLatestTab = null;
+                }
+                if (e.NewValue is LiveStreamChannelTabViewModel)
+                {
+                    var vm = e.NewValue as LiveStreamChannelTabViewModel;
+                    vm.ShowLatestTab = ShowLatestTab;
+                }
+            };
+        }
+
+        private void ShowLatestTab() 
+        {
+            Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.ContextIdle, () =>
+            {
+                ChannelTab.SelectedIndex = ChannelTab.Items.Count - 1;
+            });
         }
     }
 }

@@ -13,6 +13,8 @@ namespace WakuLive.VM
 {
     public class LiveStreamChannelTabViewModel : ViewModel
     {
+        public Action ShowLatestTab { get; set; }
+
         public ReactiveCollection<LiveStreamChannelTabItemViewModel> Items { get; set; } = new ReactiveCollection<LiveStreamChannelTabItemViewModel>();
 
         public LiveStreamChannelTabViewModel() { }
@@ -20,6 +22,7 @@ namespace WakuLive.VM
         public void AddTabItem(LiveStreamChannelTabItemViewModel tabItem) 
         {
             Items.Add(tabItem);
+            ShowLatestTab();
         }
 
         public void RemoveTabItem(string id) 
