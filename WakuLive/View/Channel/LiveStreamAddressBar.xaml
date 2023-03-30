@@ -9,7 +9,7 @@
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vm:LiveStreamAddressBarViewModel}">
     <DockPanel>
-        <Button Content="Connect" Width="100" Height="20" Margin="10,0,0,0" Command="{Binding ConnectChatCommand}"/>
+        <Button Content="接続" Width="100" Height="20" Margin="10,0,0,0" Command="{Binding ConnectChatCommand}"/>
         <TextBox Text="{Binding AddressText.Value, UpdateSourceTrigger=PropertyChanged}" Height="20" Margin="20,0,10,0">
             <TextBox.InputBindings>
                 <KeyBinding Gesture="Enter" Command="{Binding ConnectChatCommand}"/>
