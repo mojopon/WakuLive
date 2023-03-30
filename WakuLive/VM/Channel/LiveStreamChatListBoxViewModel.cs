@@ -25,6 +25,7 @@ namespace WakuLive.VM
             BindingOperations.EnableCollectionSynchronization(Items, new object());
         }
 
+        private int itemslimit = 1000;
         public void AddChatMessage(ChatMessageModel chatMessageModel)
         {
             var item = new LiveStreamChatListBoxItemViewModel
@@ -36,6 +37,12 @@ namespace WakuLive.VM
             };
 
             Items.Add(item);
+
+            // アイテム数が最大件数を超えたら、古いものから削除
+            if (Items.Count > itemslimit) 
+            {
+                Items.RemoveAt(0);
+            }
 
             ScrollToBottom?.Invoke();
         }
