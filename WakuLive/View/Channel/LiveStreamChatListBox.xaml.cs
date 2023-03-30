@@ -53,7 +53,9 @@ namespace WakuLive.View
                 var scrollProvider = peer.GetPattern(PatternInterface.Scroll) as IScrollProvider;
                 if (scrollProvider != null && scrollProvider.VerticallyScrollable)
                 {
-                    scrollProvider.SetScrollPercent(scrollProvider.HorizontalScrollPercent, 100);
+                    var horizontalScrollPercent = scrollProvider.HorizontalScrollPercent;
+                    if (horizontalScrollPercent > 100) { horizontalScrollPercent = 100; }
+                    scrollProvider.SetScrollPercent(horizontalScrollPercent, 100);
                 }
             });
         }
