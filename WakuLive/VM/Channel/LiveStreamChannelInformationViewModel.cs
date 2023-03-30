@@ -26,7 +26,7 @@ namespace WakuLive.VM
             BroadcasterName.Value = model.BroadcasterName;
             ViewerCount.Value = model.ViewerCount;
 
-            if (_thumbnailUrl != model.ThumbnailUrl) 
+            if (!string.IsNullOrEmpty(model.ThumbnailUrl) && _thumbnailUrl != model.ThumbnailUrl) 
             {
                 Application.Current.Dispatcher.Invoke(() =>
                 {
