@@ -11,7 +11,7 @@
     <Border BorderBrush="LightGray" BorderThickness="1">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="90"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
@@ -19,7 +19,11 @@
                 <RowDefinition Height="25"/>
                 <RowDefinition Height="25"/>
             </Grid.RowDefinitions>
-            <Image Source="{Binding ThumbnailImage.Value}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Margin="10,0,10,0"/>
+            <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Margin="10,0,10,0" Width="70" Height="70" CornerRadius="50">
+                <Border.Background>
+                    <ImageBrush Stretch="Uniform" ImageSource="{Binding ThumbnailImage.Value}"/>
+                </Border.Background>
+            </Border>
             <TextBlock Text="{Binding Title.Value}" FontSize="15" Grid.Column="1" Grid.Row="0" Margin="5"/>
             <TextBlock Text="{Binding BroadcasterName.Value}"  Grid.Column="1" Grid.Row="1" Margin="3"/>
             <TextBlock Text="{Binding ViewerCount.Value}"  Grid.Column="1" Grid.Row="2" Margin="3"/>
