@@ -25,8 +25,14 @@
                 </Border.Background>
             </Border>
             <TextBlock Text="{Binding Title.Value}" FontSize="15" Grid.Column="1" Grid.Row="0" Margin="5"/>
-            <TextBlock Text="{Binding BroadcasterName.Value}"  Grid.Column="1" Grid.Row="1" Margin="3"/>
-            <TextBlock Text="{Binding ViewerCount.Value}"  Grid.Column="1" Grid.Row="2" Margin="3"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Margin="3">
+                <Run Text="配信者:"/>
+                <Run Text="{Binding BroadcasterName.Value}"/>
+            </TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="2" Margin="3">
+                <Run Text="視聴数:"/>
+                <Run Text="{Binding ViewerCount.Value}"/>
+            </TextBlock>
         </Grid>
     </Border>
 </UserControl>
