@@ -12,11 +12,14 @@ namespace WakuLive.Presenter
     public class LiveStreamChannelTabItemsPresenter
     {
         private LiveStreamChatListBoxesPresenter _chatListBoxesPresenter;
+        private LiveStreamChatOptionBarsPresenter _chatOptionBarsPresenter;
         private LiveStreamChannelInformationsPresenter _channelInformationsPresenter;
         public LiveStreamChannelTabItemsPresenter(LiveStreamChatListBoxesPresenter chatListBoxesPresenter,
+                                                  LiveStreamChatOptionBarsPresenter chatOptionBarsPresenter,
                                                   LiveStreamChannelInformationsPresenter channelInformationsPresenter) 
         {
             _chatListBoxesPresenter = chatListBoxesPresenter;
+            _chatOptionBarsPresenter = chatOptionBarsPresenter;
             _channelInformationsPresenter = channelInformationsPresenter;
         }
 
@@ -31,6 +34,7 @@ namespace WakuLive.Presenter
             tabItemPresenter.SetChatModel(id, chatModel, commandFactory);
 
             _chatListBoxesPresenter.SetChatModel(tabItem, id, chatModel, commandFactory);
+            _chatOptionBarsPresenter.SetChatId(tabItem, id, commandFactory);
             _channelInformationsPresenter.SetChannelModel(tabItem, id, channelModel, commandFactory);
         }
 

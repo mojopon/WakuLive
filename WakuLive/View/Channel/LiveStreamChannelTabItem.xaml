@@ -16,6 +16,6 @@
         </Grid.RowDefinitions>
         <local:LiveStreamChannelInformation Grid.Row="0" DataContext="{Binding LiveStreamChannelInformationViewModel}"/>
         <local:LiveStreamChatListBox Grid.Row="1" DataContext="{Binding LiveStreamChatListBoxViewModel}"/>
-        <local:LiveStreamChatOptions Grid.Row="2"/>
+        <local:LiveStreamChatOptionBar Grid.Row="2"/>
     </Grid>
 </UserControl>

@@ -18,9 +18,9 @@ namespace WakuLive.View
     /// <summary>
     /// Interaction logic for LiveStreamChatOptions.xaml
     /// </summary>
-    public partial class LiveStreamChatOptions : UserControl
+    public partial class LiveStreamChatOptionBar : UserControl
     {
-        public LiveStreamChatOptions()
+        public LiveStreamChatOptionBar()
         {
             InitializeComponent();
         }

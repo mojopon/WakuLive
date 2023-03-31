@@ -128,6 +128,7 @@ namespace WakuLive
 
             _services.AddSingleton<LiveStreamChannelInformationsPresenter>();
             _services.AddSingleton<LiveStreamChatListBoxesPresenter>();
+            _services.AddSingleton<LiveStreamChatOptionBarsPresenter>();
             _services.AddSingleton<LiveStreamChannelTabItemsPresenter>();
             _services.AddSingleton<LiveStreamChannelTabPresenter>();
 

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Navigation;
 using WakuLive.Command;
 using WakuLive.Core.Domain;
+using WakuLive.View;
 
 namespace WakuLive.VM
 {
@@ -17,6 +18,7 @@ namespace WakuLive.VM
         public string Id { get; private set; }
         public ReactiveProperty<string> Name { get; private set; } = new ReactiveProperty<string>();
         public LiveStreamChatListBoxViewModel LiveStreamChatListBoxViewModel { get; private set; }
+        public LiveStreamChatOptionBarViewModel LiveStreamChatOptionBarViewModel { get; private set; }
         public LiveStreamChannelInformationViewModel LiveStreamChannelInformationViewModel { get; private set; }
         public ReactiveCommand CloseCommand { get; private set; }
 
@@ -42,6 +44,11 @@ namespace WakuLive.VM
         public void SetChatListBox(LiveStreamChatListBoxViewModel listBox)
         {
             LiveStreamChatListBoxViewModel = listBox;
+        }
+
+        public void SetChatOptionBar(LiveStreamChatOptionBarViewModel optionBar) 
+        {
+            LiveStreamChatOptionBarViewModel = optionBar;
         }
 
         public void SetChannelInformation(LiveStreamChannelInformationViewModel channelInformation)
