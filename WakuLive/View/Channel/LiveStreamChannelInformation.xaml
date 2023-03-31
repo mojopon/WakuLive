@@ -8,7 +8,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance vm:LiveStreamChannelInformationViewModel}">
-    <Border BorderBrush="LightGray" BorderThickness="1">
+    <Border BorderBrush="LightGray" BorderThickness="1,1,1,0">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="90"/>

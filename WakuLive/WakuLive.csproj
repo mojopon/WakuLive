@@ -12,6 +12,7 @@
     <None Remove="Resources\user.png" />
     <None Remove="View\Channel\LiveStreamAddressBar.xaml" />
     <None Remove="View\Channel\LiveStreamChannelInformation.xaml" />
+    <None Remove="View\Channel\LiveStreamChatOptions.xaml" />
     <None Remove="View\Channel\MenuBar.xaml" />
     <None Remove="View\Channel\StatusBar.xaml" />
     <None Remove="View\ConfigurationTab.xaml" />

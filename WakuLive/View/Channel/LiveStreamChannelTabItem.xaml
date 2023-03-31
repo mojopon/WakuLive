@@ -12,8 +12,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <local:LiveStreamChannelInformation Grid.Row="0" DataContext="{Binding LiveStreamChannelInformationViewModel}"/>
         <local:LiveStreamChatListBox Grid.Row="1" DataContext="{Binding LiveStreamChatListBoxViewModel}"/>
+        <local:LiveStreamChatOptions Grid.Row="2"/>
     </Grid>
 </UserControl>
