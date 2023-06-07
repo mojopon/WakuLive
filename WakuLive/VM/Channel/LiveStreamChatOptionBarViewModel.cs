@@ -1,6 +1,7 @@
 ﻿using Livet;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,8 @@ namespace WakuLive.VM
     public class LiveStreamChatOptionBarViewModel : ViewModel
     {
         private string _chatId;
-        private bool _enableSpeechChat;
-        private bool _enableScrollChatToBottom;
+        private bool _enableSpeechChat = true;
+        private bool _enableScrollChatToBottom = true;
 
         public bool EnableSpeechChat 
         { 
@@ -19,6 +20,7 @@ namespace WakuLive.VM
             set 
             {
                 _enableSpeechChat = value;
+                Debug.Print("Enable Speech Chat:" + _enableSpeechChat);
                 RaisePropertyChanged();
             }
         }
@@ -29,6 +31,7 @@ namespace WakuLive.VM
             set 
             {
                 _enableScrollChatToBottom = value;
+                Debug.Print("Enable Scroll Chat:" + _enableScrollChatToBottom);
                 RaisePropertyChanged();
             }
         }
