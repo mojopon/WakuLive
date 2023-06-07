@@ -20,6 +20,7 @@ namespace WakuLive.Presenter
             var chatOptionBarPresenter = new LiveStreamChatOptionBarPresenter(chatOptionBar);
             chatOptionBarPresenterDict.Add(id, chatOptionBarPresenter);
             chatOptionBarPresenter.SetChatId(id);
+            chatOptionBarPresenter.SetToggleSpeechCommand(commandFactory.GetToggleSpeechCommand(id));
         }
     }
 }

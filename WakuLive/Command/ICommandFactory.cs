@@ -13,5 +13,6 @@ namespace WakuLive.Command
         OpenConfigurationWindowCommand GetOpenConfigurationWindowCommand();
         LinkTwitchAccountCommand GetLinkTwitchAccountCommand();
         UnlinkTwitchAccountCommand GetUnlinkTwitchAccountCommand();
+        ToggleSpeechCommand GetToggleSpeechCommand(string id);
     }
 }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WakuLive.Command;
 
 namespace WakuLive.VM
 {
@@ -13,6 +14,7 @@ namespace WakuLive.VM
         private string _chatId;
         private bool _enableSpeechChat = true;
         private bool _enableScrollChatToBottom = true;
+        private ToggleSpeechCommand _toggleSpeechCommand;
 
         public bool EnableSpeechChat 
         { 
@@ -20,7 +22,7 @@ namespace WakuLive.VM
             set 
             {
                 _enableSpeechChat = value;
-                Debug.Print("Enable Speech Chat:" + _enableSpeechChat);
+                _toggleSpeechCommand?.Execute(_enableSpeechChat);
                 RaisePropertyChanged();
             }
         }
@@ -39,6 +41,11 @@ namespace WakuLive.VM
         public void SetChatId(string id) 
         {
             _chatId = id;
+        }
+
+        public void SetGoggleSpeechCommand(ToggleSpeechCommand toggleSpeechCommand) 
+        {
+            _toggleSpeechCommand = toggleSpeechCommand;
         }
     }
 }
