@@ -21,6 +21,13 @@ namespace WakuLive.Presenter
             chatOptionBarPresenterDict.Add(id, chatOptionBarPresenter);
             chatOptionBarPresenter.SetChatId(id);
             chatOptionBarPresenter.SetToggleSpeechCommand(commandFactory.GetToggleSpeechCommand(id));
+            chatOptionBarPresenter.SetToggleAutoScrollCommand(commandFactory.GetToggleAutoScrollCommand(id));
+        }
+
+        public void DeleteChat(string id) 
+        {
+            chatOptionBarPresenterDict[id].DeleteChat(id);
+            chatOptionBarPresenterDict.Remove(id);
         }
     }
 }

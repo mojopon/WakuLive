@@ -21,9 +21,19 @@ namespace WakuLive.Presenter
             _viewModel.SetChatId(id);
         }
 
+        public void DeleteChat(string id) 
+        {
+            _viewModel.Dispose();
+        }
+
         public void SetToggleSpeechCommand(ToggleSpeechCommand command) 
         {
-            _viewModel.SetGoggleSpeechCommand(command);
+            _viewModel.SetToggleSpeechCommand(command);
+        }
+
+        public void SetToggleAutoScrollCommand(ToggleAutoScrollCommand command) 
+        {
+            _viewModel.SetToggleAutoScrollCommand(command);
         }
     }
 }

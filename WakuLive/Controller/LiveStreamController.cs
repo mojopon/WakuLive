@@ -16,12 +16,14 @@ namespace WakuLive.Controller
         private ITwitchChatInteractor    _twitchChatInteractor;
         private ITwitchChannelInteractor  _twitchStreamInteractor;
         private ILiveStreamPresenter _liveStreamPresenter;
+        private LiveStreamChatListBoxesPresenter _liveStreamChatListBoxesPresenter;
         private StatusBarController _statusBarController;
         private TextToSpeechController _textToSpeechController;
         public LiveStreamController(IWakuLiveConfiguration wakuLiveConfiguration,
                                     ITwitchChatInteractor    twitchChatInteractor,
                                     ITwitchChannelInteractor  twitchStreamInteractor,
                                     ILiveStreamPresenter liveStreamPresenter,
+                                    LiveStreamChatListBoxesPresenter liveStreamChatListBoxesPresenter,
                                     StatusBarController statusBarController,
                                     TextToSpeechController textToSpeechController) 
         {
@@ -29,6 +31,7 @@ namespace WakuLive.Controller
             _twitchChatInteractor    = twitchChatInteractor;
             _twitchStreamInteractor  = twitchStreamInteractor;
             _liveStreamPresenter = liveStreamPresenter;
+            _liveStreamChatListBoxesPresenter = liveStreamChatListBoxesPresenter;
             _statusBarController = statusBarController;
             _textToSpeechController = textToSpeechController;
         }
@@ -82,6 +85,11 @@ namespace WakuLive.Controller
             _liveStreamPresenter.DeleteModels(id);
             _statusBarController.DeleteChannelModel(id);
             _textToSpeechController.StopSpeech(id);
+        }
+
+        public void ToggleAutoScroll(string id, bool flag) 
+        {
+            _liveStreamChatListBoxesPresenter.ToggleAutoScroll(id, flag);
         }
     }
 }

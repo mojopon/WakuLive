@@ -42,6 +42,7 @@ namespace WakuLive.Presenter
         {
             _chatListBoxesPresenter.DeleteChatModel(id);
             _channelInformationsPresenter.DeleteChannelModel(id);
+            _chatOptionBarsPresenter.DeleteChat(id);
 
             tabItemPresenterDic[id].Dispose();
             tabItemPresenterDic.Remove(id);

@@ -16,6 +16,7 @@ namespace WakuLive.VM
 {
     public class LiveStreamChatListBoxViewModel : ViewModel
     {
+        private bool _enableAutoScroll = true;
         public Action ScrollToBottom { get; set; }
 
         public ObservableCollection<LiveStreamChatListBoxItemViewModel> Items { get; set; } = new ObservableCollection<LiveStreamChatListBoxItemViewModel>();
@@ -44,7 +45,15 @@ namespace WakuLive.VM
                 Items.RemoveAt(0);
             }
 
-            ScrollToBottom?.Invoke();
+            if (_enableAutoScroll)
+            {
+                ScrollToBottom?.Invoke();
+            }
+        }
+
+        public void ToggleAutoScroll(bool flag) 
+        {
+            _enableAutoScroll = flag;
         }
     }
 }

@@ -29,5 +29,10 @@ namespace WakuLive.Presenter
             chatListBoxPresenterDict[id].Dispose();
             chatListBoxPresenterDict.Remove(id);
         }
+
+        public void ToggleAutoScroll(string id, bool flag) 
+        {
+            chatListBoxPresenterDict[id].ToggleAutoScroll(flag);
+        }
     }
 }

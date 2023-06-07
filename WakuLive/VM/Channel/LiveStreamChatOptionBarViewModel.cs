@@ -15,6 +15,7 @@ namespace WakuLive.VM
         private bool _enableSpeechChat = true;
         private bool _enableScrollChatToBottom = true;
         private ToggleSpeechCommand _toggleSpeechCommand;
+        private ToggleAutoScrollCommand _toggleAutoScrollCommand;
 
         public bool EnableSpeechChat 
         { 
@@ -33,7 +34,7 @@ namespace WakuLive.VM
             set 
             {
                 _enableScrollChatToBottom = value;
-                Debug.Print("Enable Scroll Chat:" + _enableScrollChatToBottom);
+                _toggleAutoScrollCommand?.Execute(_enableScrollChatToBottom);
                 RaisePropertyChanged();
             }
         }
@@ -43,9 +44,14 @@ namespace WakuLive.VM
             _chatId = id;
         }
 
-        public void SetGoggleSpeechCommand(ToggleSpeechCommand toggleSpeechCommand) 
+        public void SetToggleSpeechCommand(ToggleSpeechCommand toggleSpeechCommand) 
         {
             _toggleSpeechCommand = toggleSpeechCommand;
+        }
+
+        public void SetToggleAutoScrollCommand(ToggleAutoScrollCommand toggleAutoScrollCommand) 
+        {
+            _toggleAutoScrollCommand = toggleAutoScrollCommand;
         }
     }
 }

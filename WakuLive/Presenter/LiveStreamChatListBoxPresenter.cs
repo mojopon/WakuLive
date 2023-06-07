@@ -28,6 +28,11 @@ namespace WakuLive.Presenter
                                .Subscribe(x => _viewModel.AddChatMessage(x));    
         }
 
+        public void ToggleAutoScroll(bool flag) 
+        {
+            _viewModel.ToggleAutoScroll(flag);
+        }
+
         public void Dispose()
         {
             _disposable?.Dispose();

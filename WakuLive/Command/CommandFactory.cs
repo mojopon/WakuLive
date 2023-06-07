@@ -10,14 +10,17 @@ namespace WakuLive.Command
     public class CommandFactory : ICommandFactory
     {
         private WakuLiveClientController _wakuLiveClientController;
+        private LiveStreamController _liveStreamController;
         private TwitchConfigurationController _accountConfigurationController;
         private TextToSpeechController _textToSpeechController;
 
         public CommandFactory(WakuLiveClientController wakuLiveClientController,
+                              LiveStreamController liveStreamController,
                               TwitchConfigurationController accountConfigurationController,
                               TextToSpeechController textToSpeechController) 
         {
             _wakuLiveClientController = wakuLiveClientController;
+            _liveStreamController = liveStreamController;
             _accountConfigurationController = accountConfigurationController;
             _textToSpeechController = textToSpeechController;
         }
@@ -50,6 +53,11 @@ namespace WakuLive.Command
         public ToggleSpeechCommand GetToggleSpeechCommand(string id) 
         {
             return new ToggleSpeechCommand(id, _textToSpeechController);
+        }
+
+        public ToggleAutoScrollCommand GetToggleAutoScrollCommand(string id) 
+        {
+            return new ToggleAutoScrollCommand(id, _liveStreamController);
         }
     }
 }
