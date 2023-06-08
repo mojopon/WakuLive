@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,12 @@ namespace WakuLive.Controller
                         accessToken = _wakuLiveConfiguration.Account.TwitchAccessToken.Value;
                         break;
                     }
+            }
+
+            if (string.IsNullOrEmpty(accessToken)) 
+            {
+                _statusBarController.OnError("認証がされてません。Twitch配信を開くために設定画面から認証を行ってください。");
+                return;
             }
 
             var connectTwitchChatInput = new ConnectTwitchChatInput(userName, channelName, accessToken);

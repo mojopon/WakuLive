@@ -16,6 +16,11 @@ namespace WakuLive.Controller
             _statusBarPresenter = statusBarPresenter;
         }
 
+        public void OnError(string message) 
+        {
+            _statusBarPresenter.OnError(message);
+        }
+
         public void AddChannelModel(string id, ChannelModel channelModel) 
         {
             _statusBarPresenter.AddChannelModel(id, channelModel);

@@ -49,5 +49,10 @@ namespace WakuLive.Presenter
                 _viewModel.SetStatusText("切断しました");
             }
         }
+
+        public void OnError(string message) 
+        {
+            _viewModel.SetStatusText(message);
+        }
     }
 }
