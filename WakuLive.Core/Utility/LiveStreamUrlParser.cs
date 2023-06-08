@@ -13,7 +13,15 @@ namespace WakuLive.Utility
         {
             if (IsTwitchUrl(url)) 
             {
-                return new ParseResult(LiveStreamServiceType.Twitch, GetTwitchUserNameFromUrl(url));
+                var result =  new ParseResult(LiveStreamServiceType.Twitch, GetTwitchUserNameFromUrl(url));
+                if (string.IsNullOrEmpty(result.ChannelName))
+                {
+                    return new ParseResult(LiveStreamServiceType.None, "");
+                }
+                else 
+                {
+                    return result;
+                }
             }
 
             return new ParseResult(LiveStreamServiceType.None, "");
