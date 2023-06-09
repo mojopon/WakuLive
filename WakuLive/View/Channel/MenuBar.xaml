@@ -11,7 +11,7 @@
     <DockPanel>
         <Menu DockPanel.Dock="Right" FontSize="15">
             <MenuItem Header="設定" Command="{Binding OpenConfigurationCommand}"/>
-            <MenuItem Header="ヘルプ">
+            <MenuItem Header="ヘルプ" Visibility="Hidden">
                 <MenuItem Header="バージョン情報"/>
             </MenuItem>
         </Menu>
