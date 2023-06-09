@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WakuLive.Core.Domain;
@@ -25,6 +26,7 @@ namespace WakuLive.Presenter
             {
                 channelModelDic.Add(id, channelModel);
                 var disposable = channelModel.ChannelInformationObservable
+                                             .Take(1)
                                              .Subscribe(x => 
                                              {
                                                  _viewModel.SetStatusText(x.Title + "に接続しました");
