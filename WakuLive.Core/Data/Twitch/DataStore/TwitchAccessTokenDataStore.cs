@@ -11,7 +11,7 @@ using WakuLive.Core.Infrastructure;
 
 namespace WakuLive.Core.Data
 {
-    public class TwitchAccessTokenDataStore
+    public class TwitchAccessTokenDataStore : IDisposable
     {
         private CompositeDisposable _disposables;
         private AccessTokenReceiver _receiver;
@@ -47,6 +47,12 @@ namespace WakuLive.Core.Data
             _subject.OnNext(accessToken);
             _subject.OnCompleted();
 
+            _disposables?.Dispose();
+            _disposables = null;
+        }
+
+        public void Dispose() 
+        {
             _disposables?.Dispose();
             _disposables = null;
         }
