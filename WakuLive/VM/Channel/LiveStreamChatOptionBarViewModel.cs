@@ -12,7 +12,7 @@ namespace WakuLive.VM
     public class LiveStreamChatOptionBarViewModel : ViewModel
     {
         private string _chatId;
-        private bool _enableSpeechChat = true;
+        private bool _enableSpeechChat = false;
         private bool _enableScrollChatToBottom = true;
         private ToggleSpeechCommand _toggleSpeechCommand;
         private ToggleAutoScrollCommand _toggleAutoScrollCommand;

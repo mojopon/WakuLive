@@ -26,7 +26,7 @@ namespace WakuLive.Controller
                 return;
             }
 
-            enableSpeechDic.Add(id, true);
+            enableSpeechDic.Add(id, false);
 
 
             var disposable = model.ChatMessageObservable
