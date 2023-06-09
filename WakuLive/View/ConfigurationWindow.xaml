@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WakuLive.View"
         xmlns:vm="clr-namespace:WakuLive.VM"
         mc:Ignorable="d"
-        Title="ConfigurationWindow" Height="450" Width="450"
+        Title="ConfigurationWindow" Height="150" Width="450"
         d:DataContext="{d:DesignInstance vm:ConfigurationWindowViewModel}"
         Closing="Window_Closing">
     <Grid>
