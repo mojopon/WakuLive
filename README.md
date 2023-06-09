@@ -1,7 +1,7 @@
 ## WakuLive
 WakuLiveはTwitch配信のコメント読み上げビューワーソフトです。
 URL入力で配信を開き、棒読みちゃんとの連携で読み上げを行います（別途棒読みちゃんの起動が必要）
-設計の解説記事はこちら↓
+設計の解説記事はこちら
 https://qiita.com/mojomojopon/private/27b16cc17538549f25c5
 
 ## ダウンロード
