@@ -14,6 +14,7 @@ https://www.youtube.com/watch?v=t6g_N1ZmVAw
 2. ブラウザ上でTwitchのOAuth認証画面が開かれるので、「許可」を押して認証してください（Twitchアカウントでのログインが必要です）
 3. 認証ボタンが「認証済」になったら認証完了です。URL入力でTwitch配信を開きコメント取得を開始します。
 ![WakuLive](https://github.com/mojopon/WakuLive/assets/2043596/7a2968f7-3b4d-40de-8000-709db29e7201)
+
 チャット読み上げのチェックをONにすることで、棒読みちゃんと連携してコメントの読み上げを開始します。
 ※あらかじめ棒読みちゃん( https://chi.usamimi.info/Program/Application/BouyomiChan/ )をダウンロードし、起動する必要があります
 
