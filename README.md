@@ -25,4 +25,4 @@ https://www.youtube.com/watch?v=t6g_N1ZmVAw
 
 ## 基本設計
 アプリケーションの設計についてはこちらの記事で解説しています。
-https://qiita.com/mojomojopon/private/27b16cc17538549f25c5
+https://qiita.com/mojomojopon/items/27b16cc17538549f25c5
