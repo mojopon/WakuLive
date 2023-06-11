@@ -26,3 +26,14 @@ https://www.youtube.com/watch?v=t6g_N1ZmVAw
 ## 基本設計
 アプリケーションの設計についてはこちらの記事で解説しています。
 https://qiita.com/mojomojopon/items/27b16cc17538549f25c5
+
+## フォルダ構成
+ - WakuLive
+   - ビジネスロジックを包含してUI表示・更新や入力の受付を行うApplication層のコード
+ - WakuLive.Core
+   - Domain層やData層など、ビジネスロジックを達成する上でのコアとなる部分のコード
+ - WakuLive.Test
+   - Application層のテスト
+ - WakuLive.Core.Test
+   - Domain層とData層のテスト
+
