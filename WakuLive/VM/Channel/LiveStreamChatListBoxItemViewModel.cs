@@ -10,7 +10,8 @@ namespace WakuLive.VM
 {
     public class LiveStreamChatListBoxItemViewModel
     {
-        public string Name { get; set; }
+        public string UserName { get; set; }
+        public string DisplayName { get; set; }
         public Color Color { get; set; }
         public string Comment { get; set; }
         public List<ChatEmoteModel> Emotes { get; set; }

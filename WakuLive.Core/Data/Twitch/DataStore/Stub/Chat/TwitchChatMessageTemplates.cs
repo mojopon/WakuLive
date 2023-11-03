@@ -25,7 +25,7 @@ namespace WakuLive.Core.Data.Stub
             },
             new TwitchChatMessageEntityData()
             {
-                DisplayName = "",
+                DisplayName = "Pigeon",
                 UserName = "pigeon",
                 Message = "ﾎｰﾎｰ ﾎﾎｰ ﾎｰﾎｰ ﾎﾎｰ ﾎｰﾎｰ ﾎﾎｰ ﾎｰﾎｰ ﾎﾎｰ ﾎｰﾎｰ ﾎﾎｰ ﾎ…",
             },
@@ -54,7 +54,7 @@ namespace WakuLive.Core.Data.Stub
             },
             new TwitchChatMessageEntityData()
             {
-                DisplayName = "",
+                DisplayName = "Giraffe",
                 UserName = "Giraffe",
                 Message = "どうも！首を長くして待ってました",
             },

@@ -26,7 +26,7 @@ namespace WakuLive.View.Channel.DataTemplateSelector
             textBlock.SetValue(TextBlock.TextWrappingProperty, TextWrapping.Wrap);
 
             var name = new FrameworkElementFactory(typeof(Run));
-            name.SetValue(Run.TextProperty, vm.Name);
+            name.SetValue(Run.TextProperty, string.Compare(vm.UserName,vm.DisplayName,true) == 0 ? vm.DisplayName : string.Format("{0} ({1}) ", vm.DisplayName, vm.UserName));
             name.SetValue(Run.ForegroundProperty, Brushes.DarkGreen);
             name.SetValue(Run.FontWeightProperty, FontWeights.DemiBold);
             name.SetValue(Run.FontSizeProperty, FontSize);
@@ -93,7 +93,7 @@ namespace WakuLive.View.Channel.DataTemplateSelector
             }
             catch (Exception ex) 
             {
-                Debug.Print("Error, Name" + vm.Name + ", Comment:" + vm.Comment);
+                Debug.Print("Error, Name" + vm.UserName + ", Comment:" + vm.Comment);
             }
 
             dataTemplate.VisualTree = textBlock;
