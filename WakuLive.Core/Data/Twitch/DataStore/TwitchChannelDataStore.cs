@@ -76,8 +76,19 @@ namespace WakuLive.Core.Data.DataStore
         /// <returns></returns>
         private async Task<TwitchChannelInformationEntity> GetChannelInformationAsync(string channelName, string accessToken, Action<Exception> onError)
         {
-            var getUsersResponse = await _api.Helix.Users.GetUsersAsync(null, new List<string> { channelName }, accessToken);
-            var getStreamsResponse = await _api.Helix.Streams.GetStreamsAsync(null, 20, null, null, null, new List<string> { channelName }, accessToken);
+            GetUsersResponse getUsersResponse = null;
+            GetStreamsResponse getStreamsResponse = null;
+
+            try
+            {
+                getUsersResponse = await _api.Helix.Users.GetUsersAsync(null, new List<string> { channelName }, accessToken);
+                getStreamsResponse = await _api.Helix.Streams.GetStreamsAsync(null, 20, null, null, null, new List<string> { channelName }, accessToken);
+            }
+            catch(Exception ex) 
+            {
+                onError(ex);
+                return null;
+            }
 
             if (getStreamsResponse.Streams.Length > 0 && getUsersResponse.Users.Length > 0)
             {
