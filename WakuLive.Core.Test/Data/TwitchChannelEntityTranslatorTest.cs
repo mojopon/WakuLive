@@ -45,7 +45,7 @@ namespace WakuLive.Core.Test.Data
             Assert.IsFalse(isCompleted);
             Assert.IsNull(error);
 
-            // ChannelInformationEntityが正しく通知去れるかどうかのテスト
+            // ChannelInformationEntityが正しく通知されるかどうかのテスト
             var data = new TwitchChannelInformationEntityData()
             {
                 BroadcasterId = "test",
