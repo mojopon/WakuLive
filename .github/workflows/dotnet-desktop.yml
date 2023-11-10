@@ -38,10 +38,7 @@
 
 name: .NET Core Desktop
 
-  on:
-    push:
-      branches:    
-        - '**'
+on: push
   pull_request:
     branches: [ "master" ]
 
